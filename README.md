@@ -17,9 +17,8 @@ Wanhao Niu<sup>*</sup>, Yuan Sun<sup>*</sup>, Qiyan Ke, Jie Xu, Hao Sun, Muyuan 
 
 ## News
 
-- **2026-06**: We release the cleaned public reproduction code for the core ASK Professor G pipeline.
-- **2026-06**: Added an offline cached demo with Stage 0 visual proposals, RGB-D geometry verification, CEM optimization, and mesh/OBJ visualizations.
-- **2026-06**: Added optional PyRender support for paper-aligned RGB-D rendering and 2D-to-3D lifting.
+- **2026-06**: Our paper is accepted to IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) 2026.
+- **2026-06**: We publicly release the paper and project page for Ask Professor G. How to Grasp.
 
 ## Overview
 
