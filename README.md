@@ -23,7 +23,6 @@ Wanhao Niu<sup>*</sup>, Yuan Sun<sup>*</sup>, Qiyan Ke, Jie Xu, Hao Sun, Muyuan 
 
 ASK Professor G is a training-free grasp synthesis framework for heterogeneous grippers. Given a single RGB-D observation and a gripper URDF, the system asks a foundation model to propose semantic visual grasp regions, verifies them geometrically in 3D, expands valid regions into pose-synergy search boxes, compiles an executable objective, and refines the final grasp with Cross-Entropy Method optimization.
 
-This repository is the cleaned public core of the IROS codebase. It focuses on the reproducible method path and intentionally leaves out baselines, ablations, MuJoCo batch evaluation, GUI tools, and real-robot control scripts.
 
 <div align="center">
   <img src="docs/assets/paper-fig2-architecture.png" width="88%" alt="ASK Professor G architecture">
@@ -36,7 +35,6 @@ This repository is the cleaned public core of the IROS codebase. It focuses on t
 - **RGB-D geometry audit**: candidate pixels are lifted into 3D using depth and camera calibration, then checked with local geometry and gripper width constraints.
 - **Objective compilation**: Stage 2 produces a `calculate_loss(pose_mat, point_cloud) -> float` function with target, contact, collision/clearance, orientation, and semantic-priority terms.
 - **CEM refinement**: final grasps are optimized in a unified pose-synergy state space.
-- **Offline reproducibility**: a cached demo runs without any online LLM API key.
 
 ## Method Pipeline
 
