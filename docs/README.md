@@ -6,8 +6,7 @@ This directory contains a static project website for **ASK Professor G: How to G
 
 - `index.html`: the project landing page.
 - `styles.css`: all page styling.
-- `assets/ask-professor-g-paper.pdf`: the paper PDF copied from `root.pdf`.
-- `assets/paper-fig*.png`: figures extracted from the paper PDF.
+- `assets/paper-fig*.png`: paper figures used by the project page.
 - `assets/demo-video.mp4`: the demo video copied from the workspace root `vedio.mp4`.
 
 ## Preview Locally

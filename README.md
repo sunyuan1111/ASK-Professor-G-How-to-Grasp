@@ -7,7 +7,7 @@
 Wanhao Niu<sup>*</sup>, Yuan Sun<sup>*</sup>, Qiyan Ke, Jie Xu, Hao Sun, Muyuan Ma, Fuchun Sun<sup>&dagger;</sup>
 
 [![Project Page](https://img.shields.io/badge/Project-Page-blue)](https://sunyuan1111.github.io/ASK-Professor-G-How-to-Grasp/)
-[![Paper](https://img.shields.io/badge/Paper-PDF-red)](docs/assets/ask-professor-g-paper.pdf)
+[![Paper](https://img.shields.io/badge/Paper-Coming%20Soon-red)](#citation)
 [![Code](https://img.shields.io/badge/Code-NumPy%20%7C%20PyRender-green)](#quick-start)
 [![License](https://img.shields.io/badge/License-MIT-lightgrey)](LICENSE)
 
@@ -95,7 +95,7 @@ The public pipeline writes both image and OBJ evidence for debugging and paper-s
 ```text
 configs/                  YAML configs for grippers, objects, and default runs
 data/                     Git LFS-tracked gripper and object assets
-docs/                     project-page assets, paper PDF, and media
+docs/                     project-page assets, figures, and media
 examples/cached/          offline demo inputs
 scripts/run_pipeline.py   main end-to-end entrypoint
 scripts/run_cached_demo.py offline smoke demo
@@ -217,7 +217,7 @@ The default assets are managed with Git LFS:
 
 - gripper URDFs and configuration files under `data/grippers/` and `data/grippers_config/`
 - object meshes, URDFs, thumbnails, and point clouds under `data/objects/`
-- project-page figures, paper PDF, and media under `docs/assets/`
+- project-page figures and media under `docs/assets/`
 
 The original research sandbox is kept locally under `oldcode/` and is ignored by Git.
 
