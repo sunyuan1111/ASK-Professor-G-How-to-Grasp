@@ -335,34 +335,6 @@ figcaption {
   margin-top: 2.25rem;
 }
 
-.paper-stats {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.paper-stats article {
-  display: grid;
-  gap: 0.35rem;
-  padding: 1rem;
-  border: 1px solid rgba(0, 109, 119, 0.25);
-  border-radius: 8px;
-  background: #fffdf6;
-}
-
-.paper-stats strong {
-  color: var(--accent-2);
-  font-size: clamp(1.65rem, 3vw, 2.75rem);
-  line-height: 1;
-}
-
-.paper-stats span {
-  color: var(--muted);
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
-
 .result-grid img {
   width: 100%;
   aspect-ratio: 16 / 10;
@@ -531,7 +503,6 @@ pre code {
   }
 
   .result-grid,
-  .paper-stats,
   .code-grid {
     grid-template-columns: 1fr;
   }
