@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Ask Professor G. How to Grasp introduces training-free cross-gripper grasping from an RGB-D observation and a gripper URDF."
+    />
+    <title>Ask Professor G. How to Grasp</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="ASK Professor G home">
+        <span class="brand-mark">G</span>
+        <span>Ask Professor G</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#demo">Demo</a>
+        <a href="#setup">Setup</a>
+        <a href="#resources">Resources</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-content">
+          <p class="eyebrow">Training-free cross-gripper grasp synthesis</p>
+          <h1>Ask Professor G. How to Grasp</h1>
+          <p class="paper-subtitle">
+            Training-Free Cross-Gripper Grasping from an RGB-D Observation and a Gripper URDF
+          </p>
+          <p class="authors">
+            Wanhao Niu, Yuan Sun, Qiyan Ke, Jie Xu, Hao Sun, Muyuan Ma, and Fuchun Sun
+          </p>
+          <div class="hero-actions" aria-label="Project actions">
+            <a class="button primary" href="assets/ask-professor-g-paper.pdf">Read paper</a>
+            <a class="button secondary" href="#demo">Watch video</a>
+            <a class="button secondary" href="https://github.com/sunyuan1111/ASK-Professor-G-How-to-Grasp">Code</a>
+            <a class="button ghost" href="https://github.com/sunyuan1111/ASK-Professor-G-How-to-Grasp/blob/main/README.md">Docs</a>
+          </div>
+        </div>
+
+        <figure class="hero-visual" aria-label="Pipeline result preview">
+          <img src="assets/teaser-fig1.png" alt="Overview of the training-free cross-gripper grasp synthesis framework" />
+        </figure>
+      </section>
+
+      <section class="metrics" aria-label="Repository highlights">
+        <div>
+          <strong>0</strong>
+          <span>gripper-specific retraining</span>
+        </div>
+        <div>
+          <strong>108</strong>
+          <span>simulation objects in paper</span>
+        </div>
+        <div>
+          <strong>7</strong>
+          <span>evaluated end-effectors</span>
+        </div>
+        <div>
+          <strong>88%+</strong>
+          <span>real-world SR across setups</span>
+        </div>
+      </section>
+
+      <section class="section abstract">
+        <div class="abstract-content">
+          <h2>ABSTRACT</h2>
+          <p>
+            Robotic grasping systems must increasingly support heterogeneous end-effectors, from
+            parallel-jaw grippers to dexterous multi-finger hands. Learned predictors often bind grasp
+            perception to a fixed embodiment and require new data or retraining for a novel URDF. This
+            project instead uses a foundation model at test time as a semantic compiler: it produces a
+            search prior and an executable objective under a fixed API, while CEM performs instance-level
+            optimization over pose and synergy variables.
+          </p>
+        </div>
+      </section>
+
+      <section class="section method" id="method">
+        <div class="method-intro">
+          <h2>METHOD</h2>
+          <p>
+            Prof. G. compiles a strategy-conditioned search region and executable objective from an
+            RGB-D observation and a URDF-specified gripper. CEM then refines pose and synergy variables
+            over the compiled objective to synthesize final grasps without gripper-specific retraining.
+          </p>
+        </div>
+
+        <figure class="paper-figure method-figure">
+          <img src="assets/paper-fig2-architecture.png" alt="System architecture for grasp synthesis" />
+          <figcaption>
+            Fig. 2: dual object and gripper streams feed LLM-based search-region and objective
+            compilation before CEM optimization.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="section demo" id="demo">
+        <div class="section-heading">
+          <p class="eyebrow">Video</p>
+          <h2>End-to-end grasping demo</h2>
+          <p>
+            The demo video shows the project in motion, complementing the paper figures with a direct
+            view of grasp synthesis and execution behavior.
+          </p>
+        </div>
+        <div class="video-shell">
+          <video controls preload="metadata" playsinline>
+            <source src="assets/demo-video.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </section>
+
+      <section class="section results" id="results">
+        <div class="section-heading">
+          <p class="eyebrow">Results</p>
+          <h2>Simulation and real hardware evidence</h2>
+          <p>
+            In MuJoCo, the paper reports higher grasp success than representative geometry- and
+            learning-based baselines on WSG-50 and Allegro. In real-world experiments, UR5e plus
+            FreedomHand, UR5e plus DaHuan AG95, and SOARM101 setups all achieve success rates above
+            88%, with semantic success closely tracking physical success.
+          </p>
+        </div>
+        <div class="paper-stats" aria-label="Paper result highlights">
+          <article>
+            <strong>21.28%</strong>
+            <span>WSG-50 simulation SR</span>
+          </article>
+          <article>
+            <strong>63.68%</strong>
+            <span>Allegro simulation SR</span>
+          </article>
+          <article>
+            <strong>41.23%</strong>
+            <span>full-method ablation SR</span>
+          </article>
+          <article>
+            <strong>100%</strong>
+            <span>best real-world group SR</span>
+          </article>
+        </div>
+        <div class="result-grid">
+          <figure>
+            <img src="assets/paper-fig3-optimization.png" alt="Optimization behavior in simulation" />
+            <figcaption>
+              Fig. 3: CEM shifts candidate grasps toward lower objective values and converges over
+              iterative refinement.
+            </figcaption>
+          </figure>
+          <figure>
+            <img src="assets/paper-fig4-simulation.png" alt="Qualitative synthesized grasps in MuJoCo simulation" />
+            <figcaption>
+              Fig. 4: MuJoCo qualitative results show semantic-aware goal-directed grasps across
+              objects and grippers.
+            </figcaption>
+          </figure>
+          <figure>
+            <img src="assets/paper-fig5-real-world-setup.png" alt="Real-world experimental setups and object set" />
+            <figcaption>
+              Fig. 5: hardware setups include UR5e with FreedomHand, UR5e with DaHuan AG95, and
+              SOARM101 with RealSense cameras.
+            </figcaption>
+          </figure>
+          <figure>
+            <img src="assets/paper-fig6-real-world-grasps.png" alt="Real-world grasping qualitative results" />
+            <figcaption>
+              Fig. 6: real-world examples demonstrate semantic grasp execution on cups and tools.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section feature-band">
+        <div>
+          <p class="eyebrow">Contributions</p>
+          <h2>What the paper adds</h2>
+        </div>
+        <div class="feature-list">
+          <p>
+            A training-free formulation for cross-gripper grasp synthesis that can deploy on novel
+            URDF-specified end-effectors without gripper-specific retraining.
+          </p>
+          <p>
+            A semantics-driven conditioning mechanism that converts a single RGB-D observation and
+            heterogeneous gripper morphology into strategy-conditioned search priors.
+          </p>
+          <p>
+            An API-constrained objective compilation and CEM refinement framework that turns semantic
+            intent into reproducible executable energy functions across embodiments.
+          </p>
+        </div>
+      </section>
+
+      <section class="section setup" id="setup">
+        <div class="section-heading">
+          <p class="eyebrow">Getting started</p>
+          <h2>Install, test, and run the cached demo</h2>
+        </div>
+        <div class="code-grid">
+          <article>
+            <h3>Install assets and package</h3>
+            <pre><code>git lfs install
+git lfs pull
+python -m venv .venv
+.venv\Scripts\activate
+pip install -e ".[test,llm,geometry]"</code></pre>
+          </article>
+          <article>
+            <h3>Offline smoke check</h3>
+            <pre><code>pip install -e ".[test]"
+python scripts/run_cached_demo.py
+pytest</code></pre>
+          </article>
+          <article>
+            <h3>Run the full pipeline</h3>
+            <pre><code>python scripts/run_pipeline.py --config configs/default.yaml
+python scripts/run_pipeline.py --gripper wsg_50 --object 3D_Dollhouse_Lamp
+python scripts/run_pipeline.py --cached --example examples/cached</code></pre>
+          </article>
+        </div>
+      </section>
+
+      <section class="section resources" id="resources">
+        <div class="section-heading">
+          <p class="eyebrow">Resources</p>
+          <h2>Project artifacts</h2>
+        </div>
+        <div class="resource-grid">
+          <a href="assets/ask-professor-g-paper.pdf">
+            <span>Paper</span>
+            <strong>PDF</strong>
+          </a>
+          <a href="assets/demo-video.mp4">
+            <span>Video</span>
+            <strong>Demo MP4</strong>
+          </a>
+          <a href="https://github.com/sunyuan1111/ASK-Professor-G-How-to-Grasp">
+            <span>Repository</span>
+            <strong>Code</strong>
+          </a>
+          <a href="https://github.com/sunyuan1111/ASK-Professor-G-How-to-Grasp/blob/main/README.md">
+            <span>Documentation</span>
+            <strong>README</strong>
+          </a>
+          <a href="https://github.com/sunyuan1111/ASK-Professor-G-How-to-Grasp/blob/main/configs/default.yaml">
+            <span>Configuration</span>
+            <strong>Default YAML</strong>
+          </a>
+          <a href="https://github.com/sunyuan1111/ASK-Professor-G-How-to-Grasp/tree/main/examples/cached">
+            <span>Demo</span>
+            <strong>Cached inputs</strong>
+          </a>
+          <a href="https://github.com/sunyuan1111/ASK-Professor-G-How-to-Grasp/tree/main/tests">
+            <span>Quality</span>
+            <strong>Test suite</strong>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Ask Professor G. How to Grasp</p>
+      <p>Training-free cross-gripper grasping from RGB-D observations and URDF grippers.</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+run:
+  output_root: runs
+  top_k: 5
+  seed: 7
+  cem:
+    num_samples: 64
+    num_elites: 8
+    max_iterations: 3
+    initial_std:
+      position: 0.01
+      rotation_deg: 10.0
+      synergy: 0.05
+
+selection:
+  gripper: wsg_50
+  object: 3D_Dollhouse_Lamp
+
+llm:
+  provider: gemini
+  model: gemini-3-pro-preview
+  timeout: 180
+  max_retries: 3
+
+paths:
+  grippers: configs/grippers.yaml
+  objects: configs/objects.yaml
+

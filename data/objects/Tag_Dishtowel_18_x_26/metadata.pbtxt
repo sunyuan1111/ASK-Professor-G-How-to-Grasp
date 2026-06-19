@@ -1,0 +1,34 @@
+model {
+  file: "model.sdf"
+}
+name: "Tag_Dishtowel_18_x_26"
+description: "Tag Dishtowel, 18\" x 26\""
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "Tag"
+}
+annotations {
+  key: "gtin"
+  value: "00025466835195"
+}
+annotations {
+  key: "sku"
+  value: "00025466835195"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+}

@@ -1,0 +1,382 @@
+{
+  "urdf_path": "/Users/niuwanhao/Desktop/Learning material/Ph.D Candidate1/JiT/JgT/isaac_sim_grasping/grippers/Allegro/allegro_hand_description_right.urdf",
+  "base_pos": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "base_quat": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "gravity": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "n_steps": 1000,
+  "substeps": 10,
+  "max_force": 0.0001,
+  "kp": 0.0001,
+  "kd": 0.0001,
+  "joints": [
+    {
+      "idx": 0,
+      "name": "joint_0.0",
+      "lower": -0.47,
+      "upper": 0.47,
+      "jtype": 0
+    },
+    {
+      "idx": 1,
+      "name": "joint_1.0",
+      "lower": -0.196,
+      "upper": 1.61,
+      "jtype": 0
+    },
+    {
+      "idx": 2,
+      "name": "joint_2.0",
+      "lower": -0.174,
+      "upper": 1.709,
+      "jtype": 0
+    },
+    {
+      "idx": 3,
+      "name": "joint_3.0",
+      "lower": -0.227,
+      "upper": 1.618,
+      "jtype": 0
+    },
+    {
+      "idx": 5,
+      "name": "joint_4.0",
+      "lower": -0.47,
+      "upper": 0.47,
+      "jtype": 0
+    },
+    {
+      "idx": 6,
+      "name": "joint_5.0",
+      "lower": -0.196,
+      "upper": 1.61,
+      "jtype": 0
+    },
+    {
+      "idx": 7,
+      "name": "joint_6.0",
+      "lower": -0.174,
+      "upper": 1.709,
+      "jtype": 0
+    },
+    {
+      "idx": 8,
+      "name": "joint_7.0",
+      "lower": -0.227,
+      "upper": 1.618,
+      "jtype": 0
+    },
+    {
+      "idx": 10,
+      "name": "joint_8.0",
+      "lower": -0.47,
+      "upper": 0.47,
+      "jtype": 0
+    },
+    {
+      "idx": 11,
+      "name": "joint_9.0",
+      "lower": -0.196,
+      "upper": 1.61,
+      "jtype": 0
+    },
+    {
+      "idx": 12,
+      "name": "joint_10.0",
+      "lower": -0.174,
+      "upper": 1.709,
+      "jtype": 0
+    },
+    {
+      "idx": 13,
+      "name": "joint_11.0",
+      "lower": -0.227,
+      "upper": 1.618,
+      "jtype": 0
+    },
+    {
+      "idx": 15,
+      "name": "joint_12.0",
+      "lower": 0.263,
+      "upper": 1.396,
+      "jtype": 0
+    },
+    {
+      "idx": 16,
+      "name": "joint_13.0",
+      "lower": -0.105,
+      "upper": 1.163,
+      "jtype": 0
+    },
+    {
+      "idx": 17,
+      "name": "joint_14.0",
+      "lower": -0.189,
+      "upper": 1.644,
+      "jtype": 0
+    },
+    {
+      "idx": 18,
+      "name": "joint_15.0",
+      "lower": -0.162,
+      "upper": 1.719,
+      "jtype": 0
+    }
+  ],
+  "groups_global": {
+    "thumb": [
+      15,
+      16,
+      17,
+      18
+    ],
+    "index": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "middle": [
+      5,
+      6,
+      7,
+      8
+    ],
+    "ring": [
+      10,
+      11,
+      12,
+      13
+    ],
+    "little": []
+  },
+  "groups_local": {
+    "thumb": [
+      12,
+      13,
+      14,
+      15
+    ],
+    "index": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "middle": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "ring": [
+      8,
+      9,
+      10,
+      11
+    ],
+    "little": []
+  },
+  "roles_global": {
+    "closing_indices": [
+      15,
+      17,
+      18,
+      1,
+      2,
+      3,
+      6,
+      7,
+      8,
+      11,
+      12,
+      13
+    ],
+    "swing_indices": [
+      16,
+      0,
+      5,
+      10
+    ]
+  },
+  "sampling": {
+    "swing_sets": 10,
+    "swing_seed": 2025,
+    "swing_margin": 0.01,
+    "cont_range": 1.2,
+    "case_sensitive": true,
+    "include_others": true,
+    "allow_overlap": false,
+    "fail_on_unknown": true
+  },
+  "patterns": [
+    "power_all",
+    "pinch_thumb_index",
+    "three_jaw_chuck",
+    "partial_00",
+    "partial_01",
+    "partial_02",
+    "partial_03",
+    "partial_04",
+    "asym_00",
+    "asym_01",
+    "asym_02"
+  ],
+  "pattern_defs": {
+    "power_all": {
+      "kind": "all"
+    },
+    "pinch_thumb_index": {
+      "kind": "only",
+      "active_groups": [
+        "thumb",
+        "index"
+      ]
+    },
+    "three_jaw_chuck": {
+      "kind": "only",
+      "active_groups": [
+        "thumb",
+        "index",
+        "middle"
+      ]
+    },
+    "partial_00": {
+      "kind": "partial",
+      "stall": {
+        "little": 0.7549314070433548,
+        "ring": 0.7604904019044942
+      },
+      "active_groups": [
+        "thumb",
+        "index",
+        "middle",
+        "ring",
+        "little"
+      ]
+    },
+    "partial_01": {
+      "kind": "partial",
+      "stall": {
+        "thumb": 0.805755473793933,
+        "middle": 0.6717282607408861,
+        "index": 0.4572037145610894
+      },
+      "active_groups": [
+        "thumb",
+        "index",
+        "middle",
+        "ring",
+        "little"
+      ]
+    },
+    "partial_02": {
+      "kind": "partial",
+      "stall": {
+        "index": 0.42662075766126545
+      },
+      "active_groups": [
+        "thumb",
+        "index",
+        "middle",
+        "ring",
+        "little"
+      ]
+    },
+    "partial_03": {
+      "kind": "partial",
+      "stall": {
+        "thumb": 0.5331427171169284,
+        "little": 0.3347291420262535,
+        "index": 0.5703725664491757
+      },
+      "active_groups": [
+        "thumb",
+        "index",
+        "middle",
+        "ring",
+        "little"
+      ]
+    },
+    "partial_04": {
+      "kind": "partial",
+      "stall": {
+        "thumb": 0.41408780950019763,
+        "index": 0.6184612909981018
+      },
+      "active_groups": [
+        "thumb",
+        "index",
+        "middle",
+        "ring",
+        "little"
+      ]
+    },
+    "asym_00": {
+      "kind": "asym",
+      "speed": {
+        "thumb": 1.1090203141179915,
+        "index": 1.4656773891963408,
+        "middle": 0.5317995467638222,
+        "ring": 0.9955625666273614,
+        "little": 0.748158716216244
+      },
+      "clip": true,
+      "active_groups": [
+        "thumb",
+        "index",
+        "middle",
+        "ring",
+        "little"
+      ]
+    },
+    "asym_01": {
+      "kind": "asym",
+      "speed": {
+        "thumb": 0.9830217424551418,
+        "index": 1.5382233753521297,
+        "middle": 1.5118108241011239,
+        "ring": 1.3121208824206954,
+        "little": 1.3384311919646166
+      },
+      "clip": true,
+      "active_groups": [
+        "thumb",
+        "index",
+        "middle",
+        "ring",
+        "little"
+      ]
+    },
+    "asym_02": {
+      "kind": "asym",
+      "speed": {
+        "thumb": 0.7334895369028225,
+        "index": 1.021145838762168,
+        "middle": 1.3654977834168962,
+        "ring": 1.3192125877545302,
+        "little": 1.0883941902640295
+      },
+      "clip": true,
+      "active_groups": [
+        "thumb",
+        "index",
+        "middle",
+        "ring",
+        "little"
+      ]
+    }
+  }
+}

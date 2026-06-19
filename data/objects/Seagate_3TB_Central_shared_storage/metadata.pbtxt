@@ -1,0 +1,38 @@
+model {
+  file: "model.sdf"
+}
+name: "Seagate_3TB_Central_shared_storage"
+description: "Seagate 3TB Central shared storage\nConnect Seagate\357\277\275 Central to your Wi-Fi router to organize and back up all your content on one device that you can access from anywhere."
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "Seagate"
+}
+annotations {
+  key: "gtin"
+  value: "763649042984"
+}
+annotations {
+  key: "mpn"
+  value: "1en2n3-570"
+}
+annotations {
+  key: "sku"
+  value: "STCG3000100"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+}

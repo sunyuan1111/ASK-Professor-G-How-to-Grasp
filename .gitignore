@@ -1,0 +1,44 @@
+oldcode/
+
+# Local secrets and credentials
+.env
+.env.*
+!.env.example
+*api_key*
+*credentials*
+secrets/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+.venv/
+venv/
+
+# Runtime outputs
+runs/
+Results/
+Experiments/
+prompt/
+tmp/
+logs/
+*.log
+MUJOCO_LOG.TXT
+
+# Local paper/media artifacts not included in the first public code release
+root.pdf
+vedio.mp4
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

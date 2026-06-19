@@ -1,0 +1,34 @@
+model {
+  file: "model.sdf"
+}
+name: "Seagate_Archive_HDD_8_TB_Internal_hard_drive_SATA_6Gbs_35_ST8000AS0002"
+description: "Seagate Archive HDD 8 TB Internal hard drive SATA 6Gb/s 3.5\" ST8000AS0002"
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "Seagate"
+}
+annotations {
+  key: "gtin"
+  value: "00763649058381"
+}
+annotations {
+  key: "sku"
+  value: "00763649058381"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+}

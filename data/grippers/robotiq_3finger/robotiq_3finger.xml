@@ -1,0 +1,70 @@
+<mujoco model="RobotIQ">
+  <compiler angle="radian"/>
+
+  <asset>
+    <mesh name="RIQ_palm" content_type="model/stl" file="RIQ_palm.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="RIQ_link_1" content_type="model/stl" file="RIQ_link_1.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="RIQ_link_2" content_type="model/stl" file="RIQ_link_2.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="RIQ_link_3" content_type="model/stl" file="RIQ_link_3.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="RIQ_link_0" content_type="model/stl" file="RIQ_link_0.stl" scale="0.001 0.001 0.001"/>
+  </asset>
+
+  <worldbody>
+    <geom type="mesh" friction="4 0.5 0.3" solref="0.01" solimp="0.99 0.995" mesh="RIQ_palm"/>
+    <body name="RIQ_link_1_joint_a" pos="0.044475 0.041358 0" quat="0.707107 0 0 0.707107">
+      <inertial pos="0.0165622 -0.00941248 0" quat="0.611166 0.611166 0.355635 0.355635" mass="0.03" diaginertia="0.00602177 0.00602177 0.006"/>
+      <joint name="RIQ_palm_RIQ_link_1_joint_a" pos="0 0 0" axis="0 0 1" range="-0.0940732 1.12766" actuatorfrcrange="-2.5 2.5"/>
+      <geom pos="0.0496867 -0.0282374 0" quat="0.966801 0 0 -0.25553" type="mesh" friction="4 0.5 0.3" solref="0.01" solimp="0.99 0.995" mesh="RIQ_link_1"/>
+      <body name="RIQ_link_2_joint_a" pos="0.0496867 -0.0282374 0" quat="0.966801 0 0 -0.25553">
+        <inertial pos="0.01947 0 0" quat="0.5 0.5 0.5 0.5" mass="0.02" diaginertia="0.00400758 0.00400758 0.004"/>
+        <joint name="RIQ_link_1_RIQ_link_2_joint_a" pos="0 0 0" axis="0 0 1" range="0 1.5708" actuatorfrcrange="-2.5 2.5"/>
+        <geom pos="0.03894 0 0" quat="1 0 0 0" type="mesh" friction="4 0.5 0.3" solref="0.01" solimp="0.99 0.995" mesh="RIQ_link_2"/>
+        <body name="RIQ_link_3_joint_a" pos="0.03894 0 0">
+          <inertial pos="0 0 0" mass="0.03" diaginertia="0.006 0.006 0.006"/>
+          <joint name="RIQ_link_2_RIQ_link_3_joint_a" pos="0 0 0" axis="0 0 1" range="-0.953124 0.757298" actuatorfrcrange="-2.5 2.5"/>
+          <geom quat="0.966801 0 0 0.25553" type="mesh" friction="4 0.5 0.3" solref="0.01" solimp="0.99 0.995" mesh="RIQ_link_3"/>
+        </body>
+      </body>
+    </body>
+    <body name="RIQ_link_0_joint_b" pos="-0.040507 0.019844 0.036513" quat="0.707107 0 0.707107 0">
+      <inertial pos="-2.33727e-11 0.00729233 -0.00132333" quat="0.767643 0.640877 0 0" mass="0.03" diaginertia="0.0060033 0.0060033 0.006"/>
+      <joint name="RIQ_palm_RIQ_link_0_joint_b" pos="0 0 0" axis="0 0 1" range="-0.296706 0.296706" actuatorfrcrange="-2.5 2.5"/>
+      <geom pos="-7.0118e-11 0.021877 -0.00397" quat="0.5 0.5 0.5 0.5" type="mesh" friction="4 0.5 0.3" solref="0.01" solimp="0.99 0.995" mesh="RIQ_link_0"/>
+      <body name="RIQ_link_1_joint_b" pos="-7.0118e-11 0.021877 -0.00397" quat="0.5 0.5 0.5 0.5">
+        <inertial pos="0.0165622 -0.00941248 0" quat="0.611166 0.611166 0.355635 0.355635" mass="0.03" diaginertia="0.00602177 0.00602177 0.006"/>
+        <joint name="RIQ_link_0_RIQ_link_1_joint_b" pos="0 0 0" axis="0 0 1" range="-0.0940732 1.12766" actuatorfrcrange="-2.5 2.5"/>
+        <geom pos="0.0496867 -0.0282374 0" quat="0.966801 0 0 -0.25553" type="mesh" friction="4 0.5 0.3" solref="0.01" solimp="0.99 0.995" mesh="RIQ_link_1"/>
+        <body name="RIQ_link_2_joint_b" pos="0.0496867 -0.0282374 0" quat="0.966801 0 0 -0.25553">
+          <inertial pos="0.01947 0 0" quat="0.5 0.5 0.5 0.5" mass="0.02" diaginertia="0.00400758 0.00400758 0.004"/>
+          <joint name="RIQ_link_1_RIQ_link_2_joint_b" pos="0 0 0" axis="0 0 1" range="0 1.5708" actuatorfrcrange="-2.5 2.5"/>
+          <geom pos="0.03894 0 0" quat="1 0 0 0" type="mesh" friction="4 0.5 0.3" solref="0.01" solimp="0.99 0.995" mesh="RIQ_link_2"/>
+          <body name="RIQ_link_3_joint_b" pos="0.03894 0 0">
+            <inertial pos="0 0 0" mass="0.03" diaginertia="0.006 0.006 0.006"/>
+            <joint name="RIQ_link_2_RIQ_link_3_joint_b" pos="0 0 0" axis="0 0 1" range="-0.953124 0.757298" actuatorfrcrange="-2.5 2.5"/>
+            <geom quat="0.966801 0 0 0.25553" type="mesh" friction="4 0.5 0.3" solref="0.01" solimp="0.99 0.995" mesh="RIQ_link_3"/>
+          </body>
+        </body>
+      </body>
+    </body>
+    <body name="RIQ_link_0_joint_c" pos="-0.040507 0.019844 -0.036513" quat="0.707107 0 0.707107 0">
+      <inertial pos="-2.33727e-11 0.00729233 -0.00132333" quat="0.767643 0.640877 0 0" mass="0.03" diaginertia="0.0060033 0.0060033 0.006"/>
+      <joint name="RIQ_palm_RIQ_link_0_joint" pos="0 0 0" axis="0 0 1" range="-0.296706 0.296706" actuatorfrcrange="-2.5 2.5"/>
+      <geom pos="-7.0118e-11 0.021877 -0.00397" quat="0.5 0.5 0.5 0.5" type="mesh" friction="4 0.5 0.3" solref="0.01" solimp="0.99 0.995" mesh="RIQ_link_0"/>
+      <body name="RIQ_link_1_joint_c" pos="-7.0118e-11 0.021877 -0.00397" quat="0.5 0.5 0.5 0.5">
+        <inertial pos="0.0165622 -0.00941248 0" quat="0.611166 0.611166 0.355635 0.355635" mass="0.03" diaginertia="0.00602177 0.00602177 0.006"/>
+        <joint name="RIQ_link_0_RIQ_link_1_joint_c" pos="0 0 0" axis="0 0 1" range="-0.0940732 1.12766" actuatorfrcrange="-2.5 2.5"/>
+        <geom pos="0.0496867 -0.0282374 0" quat="0.966801 0 0 -0.25553" type="mesh" friction="4 0.5 0.3" solref="0.01" solimp="0.99 0.995" mesh="RIQ_link_1"/>
+        <body name="RIQ_link_2_joint_c" pos="0.0496867 -0.0282374 0" quat="0.966801 0 0 -0.25553">
+          <inertial pos="0.01947 0 0" quat="0.5 0.5 0.5 0.5" mass="0.02" diaginertia="0.00400758 0.00400758 0.004"/>
+          <joint name="RIQ_link_1_RIQ_link_2_joint_c" pos="0 0 0" axis="0 0 1" range="0 1.5708" actuatorfrcrange="-2.5 2.5"/>
+          <geom pos="0.03894 0 0" quat="1 0 0 0" type="mesh" friction="4 0.5 0.3" solref="0.01" solimp="0.99 0.995" mesh="RIQ_link_2"/>
+          <body name="RIQ_link_3_joint_c" pos="0.03894 0 0">
+            <inertial pos="0 0 0" mass="0.03" diaginertia="0.006 0.006 0.006"/>
+            <joint name="RIQ_link_2_RIQ_link_3_joint_c" pos="0 0 0" axis="0 0 1" range="-0.953124 0.757298" actuatorfrcrange="-2.5 2.5"/>
+            <geom quat="0.966801 0 0 0.25553" type="mesh" friction="4 0.5 0.3" solref="0.01" solimp="0.99 0.995" mesh="RIQ_link_3"/>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>

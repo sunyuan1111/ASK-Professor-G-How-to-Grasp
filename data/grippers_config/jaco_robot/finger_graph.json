@@ -1,0 +1,14 @@
+{
+  "jaco_finger_joint_0": {
+    "jaco_finger_joint_2": 1.0,
+    "jaco_finger_joint_4": 0.7509265129064823
+  },
+  "jaco_finger_joint_2": {
+    "jaco_finger_joint_0": 1.0,
+    "jaco_finger_joint_4": 0.7687935019960871
+  },
+  "jaco_finger_joint_4": {
+    "jaco_finger_joint_0": 0.7509265129064823,
+    "jaco_finger_joint_2": 0.7687935019960871
+  }
+}

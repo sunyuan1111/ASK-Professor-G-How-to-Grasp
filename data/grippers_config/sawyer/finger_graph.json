@@ -1,0 +1,8 @@
+{
+  "finger_joint1": {
+    "finger_joint2": 1.0
+  },
+  "finger_joint2": {
+    "finger_joint1": 1.0
+  }
+}

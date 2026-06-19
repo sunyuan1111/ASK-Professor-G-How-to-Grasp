@@ -1,0 +1,10 @@
+objects:
+  3D_Dollhouse_Lamp:
+    name: 3D Dollhouse Lamp
+    category: furniture
+    mesh: data/objects/3D_Dollhouse_Lamp/meshes/model.obj
+    urdf: data/objects/3D_Dollhouse_Lamp/model.urdf
+    thumbnail: data/objects/3D_Dollhouse_Lamp/thumbnails/0.jpg
+    point_cloud: data/objects/3D_Dollhouse_Lamp/points_sampled_1024.xyz
+    description: A miniature lamp for a dollhouse.
+

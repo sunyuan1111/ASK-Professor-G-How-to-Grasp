@@ -1,0 +1,35 @@
+model {
+  file: "model.sdf"
+}
+name: "Sea_to_Summit_Xl_Bowl"
+description: "Sea to Summit Xl Bowl"
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "Sea"
+}
+annotations {
+  key: "gtin"
+  value: "09327868029976"
+}
+annotations {
+  key: "sku"
+  value: "09327868029976"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+  first: "Consumer Goods"
+}

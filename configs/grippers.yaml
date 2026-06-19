@@ -1,0 +1,19 @@
+grippers:
+  wsg_50:
+    name: Weiss WSG-50
+    urdf: data/grippers/wsg_50/wsg_50.urdf
+    config: data/grippers_config/wsg_50/wsg_50.json
+    glpca: data/grippers_config/wsg_50/glpca.npz
+    hand_type: parallel
+    grasp_mode: pinch_grasp
+    length_axis: -X
+    width_axis: +Y
+    palm_normal: +Z
+    closing_direction: +X
+    max_opening_width: 0.11
+    min_opening_width: 0.0
+    finger_thickness: 0.015
+    finger_length: 0.05
+    bounding_box: [0.146, 0.05, 0.1535]
+    tcp_offset: [0.0, 0.0, 0.1335]
+

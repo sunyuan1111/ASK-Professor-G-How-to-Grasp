@@ -1,0 +1,29 @@
+
+
+{
+  "case_sensitive": true,
+  "include_others": true,
+  "allow_overlap": false,
+  "fail_on_unknown": true,
+
+  "groups": {
+        "thumb":  ["panda_finger_joint1"],
+        "index":  ["panda_finger_joint2"],
+        "middle": [],
+        "ring":   [],
+        "little": []
+      },
+
+  "roles": {
+    "closing": ["panda_finger_joint1", "panda_finger_joint2"],
+
+    "swing":   []
+  },
+
+  "sampling": {
+    "swing_sets":   10,
+    "swing_seed":   2025,
+    "swing_margin": 0.01,
+    "cont_range":   1.2
+  }
+}

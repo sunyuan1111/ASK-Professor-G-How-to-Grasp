@@ -1,0 +1,32 @@
+
+
+{
+  "case_sensitive": true,
+  "include_others": true,
+  "allow_overlap": false,
+  "fail_on_unknown": true,
+
+  "groups": {
+        "thumb":  ["a_palm_link1_joint", "a_link1_link2_joint", "a_link2_link3_joint"],
+        "index":  ["b_palm_link1_joint", "b_link1_link2_joint", "b_link2_link3_joint"],
+        "middle": ["c_palm_link2_joint_0", "c_link2_link3_joint"],
+        "ring":   [],
+        "little": []
+      },
+
+  "roles": {
+    "closing": ["a_link1_link2_joint", "a_link2_link3_joint", 
+                "b_link1_link2_joint", "b_link2_link3_joint", 
+                "c_palm_link2_joint_0", "c_link2_link3_joint"],
+
+    "swing":   ["a_palm_link1_joint",
+                "b_palm_link1_joint"]
+  },
+
+  "sampling": {
+    "swing_sets":   10,
+    "swing_seed":   2025,
+    "swing_margin": 0.01,
+    "cont_range":   1.2
+  }
+}

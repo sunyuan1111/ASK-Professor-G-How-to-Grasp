@@ -1,0 +1,11 @@
+<mujoco model="3D_Dollhouse_Sofa">
+  <compiler angle="radian"/>
+
+  <asset>
+    <mesh name="model" content_type="model/obj" file="model.obj"/>
+  </asset>
+
+  <worldbody>
+    <geom type="mesh" friction="4 0.5 0.3" solref="0.01" solimp="0.99 0.995" rgba="1 1 1 1" mesh="model"/>
+  </worldbody>
+</mujoco>

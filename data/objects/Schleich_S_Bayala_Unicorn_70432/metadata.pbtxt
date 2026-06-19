@@ -1,0 +1,35 @@
+model {
+  file: "model.sdf"
+}
+name: "Schleich_S_Bayala_Unicorn_70432"
+description: "Schleich S Bayala Unicorn, 70432"
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "Schleich S"
+}
+annotations {
+  key: "gtin"
+  value: "00658183413805"
+}
+annotations {
+  key: "sku"
+  value: "00658183413805"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+  first: "Toys"
+}

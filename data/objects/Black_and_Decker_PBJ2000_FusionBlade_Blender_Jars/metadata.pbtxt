@@ -1,0 +1,34 @@
+model {
+  file: "model.sdf"
+}
+name: "Black_and_Decker_PBJ2000_FusionBlade_Blender_Jars"
+description: "Black and Decker PBJ2000 FusionBlade Blender Jars"
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "Black"
+}
+annotations {
+  key: "gtin"
+  value: "00050875813168"
+}
+annotations {
+  key: "sku"
+  value: "00050875813168"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+}

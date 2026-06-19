@@ -1,0 +1,126 @@
+{
+  "palm_index1_0_joint": {
+    "index1_0_index1_joint": 0.2950810686884785,
+    "index1_index2_joint": 0.2950814103304112,
+    "index2_index3_joint": 0.29508047864446046,
+    "palm_ring1_0_joint": 0.29379393838451223
+  },
+  "index1_0_index1_joint": {
+    "palm_index1_0_joint": 0.2950810686884785,
+    "index1_index2_joint": 0.9999999999333435,
+    "index2_index3_joint": 0.9999999999267756,
+    "thumb1_0_thumb1_joint": 0.8797116059403779
+  },
+  "index1_index2_joint": {
+    "palm_index1_0_joint": 0.2950814103304112,
+    "index1_0_index1_joint": 0.9999999999333435,
+    "index2_index3_joint": 0.9999999997409391,
+    "thumb1_0_thumb1_joint": 0.8797119194383923,
+    "thumb1_thumb2_joint": 0.8797117830509633,
+    "thumb2_thumb3_joint": 0.8797111510906467
+  },
+  "index2_index3_joint": {
+    "palm_index1_0_joint": 0.29508047864446046,
+    "index1_0_index1_joint": 0.9999999999267756,
+    "index1_index2_joint": 0.9999999997409391,
+    "thumb1_0_thumb1_joint": 0.8797111490618269
+  },
+  "palm_mid1_0_joint": {
+    "mid1_0_mid1_joint": 0.2904591361076043,
+    "mid1_mid2_joint": 0.29045914367160003,
+    "palm_ring1_0_joint": 0.45406305815683523
+  },
+  "mid1_0_mid1_joint": {
+    "palm_mid1_0_joint": 0.2904591361076043,
+    "mid1_mid2_joint": 0.9999999999823337,
+    "mid2_mid3_joint": 0.9999999999531187,
+    "ring1_ring2_joint": 0.8257359061314536
+  },
+  "mid1_mid2_joint": {
+    "palm_mid1_0_joint": 0.29045914367160003,
+    "mid1_0_mid1_joint": 0.9999999999823337,
+    "mid2_mid3_joint": 0.9999999998933233,
+    "ring1_ring2_joint": 0.825736372116008
+  },
+  "mid2_mid3_joint": {
+    "mid1_0_mid1_joint": 0.9999999999531187,
+    "mid1_mid2_joint": 0.9999999998933233,
+    "ring1_ring2_joint": 0.8257340591560336
+  },
+  "palm_ring1_0_joint": {
+    "palm_index1_0_joint": 0.29379393838451223,
+    "palm_mid1_0_joint": 0.45406305815683523,
+    "ring2_ring3_joint": 0.28242688421889356
+  },
+  "ring1_0_ring1_joint": {
+    "ring1_ring2_joint": 0.9999999999992246,
+    "ring2_ring3_joint": 0.9999999999487994,
+    "pinky2_pinky3_joint": 0.9543496515456388
+  },
+  "ring1_ring2_joint": {
+    "mid1_0_mid1_joint": 0.8257359061314536,
+    "mid1_mid2_joint": 0.825736372116008,
+    "mid2_mid3_joint": 0.8257340591560336,
+    "ring1_0_ring1_joint": 0.9999999999992246,
+    "ring2_ring3_joint": 0.9999999999176651,
+    "pinky2_pinky3_joint": 0.9543495493838383
+  },
+  "ring2_ring3_joint": {
+    "palm_ring1_0_joint": 0.28242688421889356,
+    "ring1_0_ring1_joint": 0.9999999999487994,
+    "ring1_ring2_joint": 0.9999999999176651,
+    "pinky1_0_pinky1_joint": 0.9543498503615191,
+    "pinky1_pinky2_joint": 0.9543496081598389,
+    "pinky2_pinky3_joint": 0.9543500045802158
+  },
+  "palm_pinky1_0_joint": {
+    "pinky1_0_pinky1_joint": 0.22058259128800034,
+    "pinky1_pinky2_joint": 0.22058264831450777,
+    "palm_thumb1_0_joint": 0.415613918704472
+  },
+  "pinky1_0_pinky1_joint": {
+    "ring2_ring3_joint": 0.9543498503615191,
+    "palm_pinky1_0_joint": 0.22058259128800034,
+    "pinky1_pinky2_joint": 0.9999999999957363,
+    "pinky2_pinky3_joint": 0.9999999999977426
+  },
+  "pinky1_pinky2_joint": {
+    "ring2_ring3_joint": 0.9543496081598389,
+    "palm_pinky1_0_joint": 0.22058264831450777,
+    "pinky1_0_pinky1_joint": 0.9999999999957363,
+    "pinky2_pinky3_joint": 0.9999999999799959
+  },
+  "pinky2_pinky3_joint": {
+    "ring1_0_ring1_joint": 0.9543496515456388,
+    "ring1_ring2_joint": 0.9543495493838383,
+    "ring2_ring3_joint": 0.9543500045802158,
+    "pinky1_0_pinky1_joint": 0.9999999999977426,
+    "pinky1_pinky2_joint": 0.9999999999799959
+  },
+  "palm_thumb1_0_joint": {
+    "palm_pinky1_0_joint": 0.415613918704472,
+    "thumb1_0_thumb1_joint": 0.6028414938987754,
+    "thumb1_thumb2_joint": 0.6028410991963773,
+    "thumb2_thumb3_joint": 0.6028405101026074
+  },
+  "thumb1_0_thumb1_joint": {
+    "index1_0_index1_joint": 0.8797116059403779,
+    "index1_index2_joint": 0.8797119194383923,
+    "index2_index3_joint": 0.8797111490618269,
+    "palm_thumb1_0_joint": 0.6028414938987754,
+    "thumb1_thumb2_joint": 1.0,
+    "thumb2_thumb3_joint": 0.9999999999826509
+  },
+  "thumb1_thumb2_joint": {
+    "index1_index2_joint": 0.8797117830509633,
+    "palm_thumb1_0_joint": 0.6028410991963773,
+    "thumb1_0_thumb1_joint": 1.0,
+    "thumb2_thumb3_joint": 0.9999999999775071
+  },
+  "thumb2_thumb3_joint": {
+    "index1_index2_joint": 0.8797111510906467,
+    "palm_thumb1_0_joint": 0.6028405101026074,
+    "thumb1_0_thumb1_joint": 0.9999999999826509,
+    "thumb1_thumb2_joint": 0.9999999999775071
+  }
+}

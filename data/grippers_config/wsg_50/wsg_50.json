@@ -1,0 +1,30 @@
+
+
+{
+  "case_sensitive": true,
+  "include_others": true,
+  "allow_overlap": false,
+  "fail_on_unknown": true,
+
+  "groups": {
+        "thumb":  ["base_joint_gripper_left"],
+        "index":  ["base_joint_gripper_right"],
+        "middle": [],
+        "ring":   [],
+        "little": []
+      },
+
+  "roles": {
+    "closing": ["base_joint_gripper_left", 
+                "base_joint_gripper_right"],
+
+    "swing":   []
+  },
+
+  "sampling": {
+    "swing_sets":   1,
+    "swing_seed":   2025,
+    "swing_margin": 0.01,
+    "cont_range":   1.2
+  }
+}

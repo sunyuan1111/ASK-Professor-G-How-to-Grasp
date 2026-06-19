@@ -1,0 +1,39 @@
+model {
+  file: "model.sdf"
+}
+name: "Saccharomyces_Boulardii_MOS_Value_Size"
+description: "Saccharomyces Boulardii + MOS Value Size"
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "Jarrow Formulas"
+}
+annotations {
+  key: "gtin"
+  value: "790011030294"
+}
+annotations {
+  key: "mpn"
+  value: "790011030294"
+}
+annotations {
+  key: "sku"
+  value: "SAC180"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+  first: "Bottles and Cans and Cups"
+}

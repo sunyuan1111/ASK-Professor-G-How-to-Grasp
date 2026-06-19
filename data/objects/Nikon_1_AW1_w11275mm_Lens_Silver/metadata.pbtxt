@@ -1,0 +1,39 @@
+model {
+  file: "model.sdf"
+}
+name: "Nikon_1_AW1_w11275mm_Lens_Silver"
+description: "Nikon 1 AW1 w/11-27.5mm Lens (Silver)\nOne-Lens-Kit, Nikon 1 AW1 Camera Body, AN-N1000 Strap, UC-E15 USB Cable, EN-EL20 Rechargeable Li-ion Battery, MH-27 Battery Charger, BF-N2000 Body Cap, WP-O2000 O-Ring, PA-N1000 O-Ring Protector, ViewNX 2, Short Movie Creator CD, User\'s Manual, Reference Manual CD"
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "Nikon"
+}
+annotations {
+  key: "gtin"
+  value: "018208276660"
+}
+annotations {
+  key: "mpn"
+  value: "27666"
+}
+annotations {
+  key: "sku"
+  value: "27666"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+  first: "Camera"
+}

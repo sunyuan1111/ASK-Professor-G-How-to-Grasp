@@ -1,0 +1,35 @@
+model {
+  file: "model.sdf"
+}
+name: "Brother_Ink_Cartridge_Magenta_LC75M"
+description: "Brother Ink Cartridge, Magenta LC75M"
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "Brother"
+}
+annotations {
+  key: "gtin"
+  value: "00012502627364"
+}
+annotations {
+  key: "sku"
+  value: "00012502627364"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+  first: "Consumer Goods"
+}

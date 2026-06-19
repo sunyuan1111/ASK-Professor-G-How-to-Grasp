@@ -1,0 +1,30 @@
+
+
+{
+  "case_sensitive": true,
+  "include_others": true,
+  "allow_overlap": false,
+  "fail_on_unknown": true,
+
+  "groups": {
+        "thumb":  ["finger_joint1"],
+        "index":  ["finger_joint2"],
+        "middle": [],
+        "ring":   [],
+        "little": []
+      },
+
+  "roles": {
+    "closing": ["finger_joint1", 
+                "finger_joint2"],
+
+    "swing":   []
+  },
+
+  "sampling": {
+    "swing_sets":   1,
+    "swing_seed":   2025,
+    "swing_margin": 0.01,
+    "cont_range":   1.2
+  }
+}

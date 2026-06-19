@@ -1,0 +1,9 @@
+{
+  "object": "3D_Dollhouse_Lamp",
+  "gripper": "wsg_50",
+  "grasps": [],
+  "total_optimized": 0,
+  "top_k": 5,
+  "optimization_history": {}
+}
+

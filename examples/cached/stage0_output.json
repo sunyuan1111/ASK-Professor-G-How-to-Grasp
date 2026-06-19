@@ -1,0 +1,61 @@
+{
+  "object_analysis": "A vertical lamp-like object with a small base, central stem, and conical head.",
+  "graspable_parts": [
+    "stem",
+    "head",
+    "base"
+  ],
+  "proposals": [
+    {
+      "id": 1,
+      "strategy": "SideY_Stem_Pinch",
+      "approach_direction": "SideY",
+      "closing_direction": [
+        1,
+        0,
+        0
+      ],
+      "reasoning": "The central stem is narrow and easy for a parallel gripper to pinch.",
+      "target_part": "middle stem",
+      "candidate_points": [
+        [
+          0.51,
+          0.50
+        ],
+        [
+          0.50,
+          0.52
+        ]
+      ],
+      "estimated_part_width": "0.01m",
+      "priority": "High",
+      "risk_factors": [
+        "Requires precise positioning"
+      ]
+    },
+    {
+      "id": 2,
+      "strategy": "SideX_Head_Grasp",
+      "approach_direction": "SideX",
+      "closing_direction": [
+        0,
+        1,
+        0
+      ],
+      "reasoning": "The head is larger but tapered, so it is feasible with higher slip risk.",
+      "target_part": "conical head",
+      "candidate_points": [
+        [
+          0.51,
+          0.32
+        ]
+      ],
+      "estimated_part_width": "0.03m",
+      "priority": "Medium",
+      "risk_factors": [
+        "Tapered surface may slip"
+      ]
+    }
+  ]
+}
+

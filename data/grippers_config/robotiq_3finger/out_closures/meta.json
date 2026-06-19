@@ -1,0 +1,330 @@
+{
+  "urdf_path": "/Users/niuwanhao/Desktop/Intern/AskPG/grippers/robotiq_3finger/robotiq_3finger.urdf",
+  "base_pos": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "base_quat": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "gravity": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "n_steps": 1000,
+  "substeps": 10,
+  "max_force": 0.0001,
+  "kp": 0.0001,
+  "kd": 0.0001,
+  "joints": [
+    {
+      "idx": 0,
+      "name": "RIQ_palm_RIQ_link_1_joint_a",
+      "lower": -0.0940732466825,
+      "upper": 1.12765722971,
+      "jtype": 0
+    },
+    {
+      "idx": 3,
+      "name": "RIQ_link_1_RIQ_link_2_joint_a",
+      "lower": 0.0,
+      "upper": 1.57079632679,
+      "jtype": 0
+    },
+    {
+      "idx": 5,
+      "name": "RIQ_link_2_RIQ_link_3_joint_a",
+      "lower": -0.953124304514,
+      "upper": 0.75729836244,
+      "jtype": 0
+    },
+    {
+      "idx": 8,
+      "name": "RIQ_palm_RIQ_link_0_joint_b",
+      "lower": -0.296705972839,
+      "upper": 0.296705972839,
+      "jtype": 0
+    },
+    {
+      "idx": 11,
+      "name": "RIQ_link_0_RIQ_link_1_joint_b",
+      "lower": -0.0940732466825,
+      "upper": 1.12765722971,
+      "jtype": 0
+    },
+    {
+      "idx": 14,
+      "name": "RIQ_link_1_RIQ_link_2_joint_b",
+      "lower": 0.0,
+      "upper": 1.57079632679,
+      "jtype": 0
+    },
+    {
+      "idx": 16,
+      "name": "RIQ_link_2_RIQ_link_3_joint_b",
+      "lower": -0.953124304514,
+      "upper": 0.75729836244,
+      "jtype": 0
+    },
+    {
+      "idx": 19,
+      "name": "RIQ_palm_RIQ_link_0_joint",
+      "lower": -0.296705972839,
+      "upper": 0.296705972839,
+      "jtype": 0
+    },
+    {
+      "idx": 22,
+      "name": "RIQ_link_0_RIQ_link_1_joint_c",
+      "lower": -0.0940732466825,
+      "upper": 1.12765722971,
+      "jtype": 0
+    },
+    {
+      "idx": 25,
+      "name": "RIQ_link_1_RIQ_link_2_joint_c",
+      "lower": 0.0,
+      "upper": 1.57079632679,
+      "jtype": 0
+    },
+    {
+      "idx": 27,
+      "name": "RIQ_link_2_RIQ_link_3_joint_c",
+      "lower": -0.953124304514,
+      "upper": 0.75729836244,
+      "jtype": 0
+    }
+  ],
+  "groups_global": {
+    "thumb": [
+      0,
+      3,
+      5
+    ],
+    "index": [
+      8,
+      11,
+      14,
+      16
+    ],
+    "middle": [
+      19,
+      22,
+      25,
+      27
+    ],
+    "ring": [],
+    "little": []
+  },
+  "groups_local": {
+    "thumb": [
+      0,
+      1,
+      2
+    ],
+    "index": [
+      3,
+      4,
+      5,
+      6
+    ],
+    "middle": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "ring": [],
+    "little": []
+  },
+  "roles_global": {
+    "closing_indices": [
+      0,
+      3,
+      5,
+      11,
+      14,
+      16,
+      22,
+      25,
+      27
+    ],
+    "swing_indices": [
+      8,
+      19
+    ]
+  },
+  "sampling": {
+    "swing_sets": 10,
+    "swing_seed": 2025,
+    "swing_margin": 0.01,
+    "cont_range": 1.2,
+    "case_sensitive": true,
+    "include_others": true,
+    "allow_overlap": false,
+    "fail_on_unknown": true
+  },
+  "patterns": [
+    "power_all",
+    "pinch_thumb_index",
+    "three_jaw_chuck",
+    "partial_00",
+    "partial_01",
+    "partial_02",
+    "partial_03",
+    "partial_04",
+    "asym_00",
+    "asym_01",
+    "asym_02"
+  ],
+  "pattern_defs": {
+    "power_all": {
+      "kind": "all"
+    },
+    "pinch_thumb_index": {
+      "kind": "only",
+      "active_groups": [
+        "thumb",
+        "index"
+      ]
+    },
+    "three_jaw_chuck": {
+      "kind": "only",
+      "active_groups": [
+        "thumb",
+        "index",
+        "middle"
+      ]
+    },
+    "partial_00": {
+      "kind": "partial",
+      "stall": {
+        "little": 0.7549314070433548,
+        "ring": 0.7604904019044942
+      },
+      "active_groups": [
+        "thumb",
+        "index",
+        "middle",
+        "ring",
+        "little"
+      ]
+    },
+    "partial_01": {
+      "kind": "partial",
+      "stall": {
+        "thumb": 0.805755473793933,
+        "middle": 0.6717282607408861,
+        "index": 0.4572037145610894
+      },
+      "active_groups": [
+        "thumb",
+        "index",
+        "middle",
+        "ring",
+        "little"
+      ]
+    },
+    "partial_02": {
+      "kind": "partial",
+      "stall": {
+        "index": 0.42662075766126545
+      },
+      "active_groups": [
+        "thumb",
+        "index",
+        "middle",
+        "ring",
+        "little"
+      ]
+    },
+    "partial_03": {
+      "kind": "partial",
+      "stall": {
+        "thumb": 0.5331427171169284,
+        "little": 0.3347291420262535,
+        "index": 0.5703725664491757
+      },
+      "active_groups": [
+        "thumb",
+        "index",
+        "middle",
+        "ring",
+        "little"
+      ]
+    },
+    "partial_04": {
+      "kind": "partial",
+      "stall": {
+        "thumb": 0.41408780950019763,
+        "index": 0.6184612909981018
+      },
+      "active_groups": [
+        "thumb",
+        "index",
+        "middle",
+        "ring",
+        "little"
+      ]
+    },
+    "asym_00": {
+      "kind": "asym",
+      "speed": {
+        "thumb": 1.1090203141179915,
+        "index": 1.4656773891963408,
+        "middle": 0.5317995467638222,
+        "ring": 0.9955625666273614,
+        "little": 0.748158716216244
+      },
+      "clip": true,
+      "active_groups": [
+        "thumb",
+        "index",
+        "middle",
+        "ring",
+        "little"
+      ]
+    },
+    "asym_01": {
+      "kind": "asym",
+      "speed": {
+        "thumb": 0.9830217424551418,
+        "index": 1.5382233753521297,
+        "middle": 1.5118108241011239,
+        "ring": 1.3121208824206954,
+        "little": 1.3384311919646166
+      },
+      "clip": true,
+      "active_groups": [
+        "thumb",
+        "index",
+        "middle",
+        "ring",
+        "little"
+      ]
+    },
+    "asym_02": {
+      "kind": "asym",
+      "speed": {
+        "thumb": 0.7334895369028225,
+        "index": 1.021145838762168,
+        "middle": 1.3654977834168962,
+        "ring": 1.3192125877545302,
+        "little": 1.0883941902640295
+      },
+      "clip": true,
+      "active_groups": [
+        "thumb",
+        "index",
+        "middle",
+        "ring",
+        "little"
+      ]
+    }
+  }
+}

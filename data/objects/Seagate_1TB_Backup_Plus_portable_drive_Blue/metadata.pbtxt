@@ -1,0 +1,38 @@
+model {
+  file: "model.sdf"
+}
+name: "Seagate_1TB_Backup_Plus_portable_drive_Blue"
+description: "Seagate 1TB Backup Plus portable drive - Blue\nThe Backup Plus portable drive from Seagate is the simple, one-click way to protect and share your entire digital life\357\277\275without getting in the way of the rest of your life."
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "Seagate"
+}
+annotations {
+  key: "gtin"
+  value: "763649038680"
+}
+annotations {
+  key: "mpn"
+  value: "1d8an7-570"
+}
+annotations {
+  key: "sku"
+  value: "STBU1000102"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+}

@@ -1,0 +1,54 @@
+<mujoco model="Barrett">
+  <compiler angle="radian"/>
+
+  <asset>
+    <mesh name="palm" content_type="model/stl" file="palm.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="link1" content_type="model/stl" file="link1.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="link2" content_type="model/stl" file="link2.stl" scale="0.001 0.001 0.001"/>
+    <mesh name="link3" content_type="model/stl" file="link3.stl" scale="0.001 0.001 0.001"/>
+  </asset>
+
+  <worldbody>
+    <geom type="mesh" friction="4 0.5 0.3" solref="0.01" solimp="0.99 0.995" mesh="palm"/>
+    <body name="a_link1_joint" pos="0.025 0 -0.001" quat="1.7949e-09 0 1 0">
+      <inertial pos="-5.34184e-11 0.0166667 0" quat="0.707107 0.707107 0 0" mass="0.03" diaginertia="0.00601667 0.00601667 0.006"/>
+      <joint name="a_palm_link1_joint" pos="0 0 0" axis="0 0 1" range="0 3.14159" actuatorfrcrange="-50 50"/>
+      <geom pos="-1.60255e-10 0.05 0" quat="0.5 -0.5 -0.5 0.5" type="mesh" friction="4 0.5 0.3" solref="0.01" solimp="0.99 0.995" mesh="link1"/>
+      <body name="a_link2_joint" pos="-1.60255e-10 0.05 0" quat="0.5 -0.5 -0.5 0.5">
+        <inertial pos="0.0232445 0.00203363 0" quat="0.477714 0.477714 0.521334 0.521334" mass="0.03" diaginertia="0.00603267 0.00603267 0.006"/>
+        <joint name="a_link1_link2_joint" pos="0 0 0" axis="0 0 1" range="0 2.51327" actuatorfrcrange="-2.5 2.5"/>
+        <geom pos="0.0697336 0.0061009 0" quat="0.999048 0 0 0.0436194" type="mesh" friction="4 0.5 0.3" solref="0.01" solimp="0.99 0.995" mesh="link2"/>
+        <body name="a_link3_joint" pos="0.0697336 0.0061009 0" quat="0.999048 0 0 0.0436194">
+          <inertial pos="0.0140441 0.0117844 0" quat="0.298836 0.298836 0.640856 0.640856" mass="0.03" diaginertia="0.00602017 0.00602017 0.006"/>
+          <joint name="a_link2_link3_joint" pos="0 0 0" axis="0 0 1" range="0 2.51327" actuatorfrcrange="-2.5 2.5"/>
+          <geom pos="0.0421324 0.0353533 0" quat="0.939693 0 0 0.34202" type="mesh" friction="4 0.5 0.3" solref="0.01" solimp="0.99 0.995" mesh="link3"/>
+        </body>
+      </body>
+    </body>
+    <body name="b_link1_joint" pos="-0.025 0 -0.001">
+      <inertial pos="-5.34184e-11 0.0166667 0" quat="0.707107 0.707107 0 0" mass="0.03" diaginertia="0.00601667 0.00601667 0.006"/>
+      <joint name="b_palm_link1_joint" pos="0 0 0" axis="0 0 1" range="0 3.14159" actuatorfrcrange="-50 50"/>
+      <geom pos="-1.60255e-10 0.05 0" quat="0.5 0.5 0.5 0.5" type="mesh" friction="4 0.5 0.3" solref="0.01" solimp="0.99 0.995" mesh="link1"/>
+      <body name="b_link2_joint" pos="-1.60255e-10 0.05 0" quat="0.5 0.5 0.5 0.5">
+        <inertial pos="0.0232445 0.00203363 0" quat="0.477714 0.477714 0.521334 0.521334" mass="0.03" diaginertia="0.00603267 0.00603267 0.006"/>
+        <joint name="b_link1_link2_joint" pos="0 0 0" axis="0 0 1" range="0 2.51327" actuatorfrcrange="-2.5 2.5"/>
+        <geom pos="0.0697336 0.0061009 0" quat="0.999048 0 0 0.0436194" type="mesh" friction="4 0.5 0.3" solref="0.01" solimp="0.99 0.995" mesh="link2"/>
+        <body name="b_link3_joint" pos="0.0697336 0.0061009 0" quat="0.999048 0 0 0.0436194">
+          <inertial pos="0.0140441 0.0117844 0" quat="0.298836 0.298836 0.640856 0.640856" mass="0.03" diaginertia="0.00602017 0.00602017 0.006"/>
+          <joint name="b_link2_link3_joint" pos="0 0 0" axis="0 0 1" range="0 2.51327" actuatorfrcrange="-2.5 2.5"/>
+          <geom pos="0.0421324 0.0353533 0" quat="0.939693 0 0 0.34202" type="mesh" friction="4 0.5 0.3" solref="0.01" solimp="0.99 0.995" mesh="link3"/>
+        </body>
+      </body>
+    </body>
+    <body name="c_link2_joint_0" pos="0 -0.05 -0.001" quat="0.707107 0 -0.707107 0">
+      <inertial pos="0.00152523 -0.0174334 0" quat="0.706434 0.706434 0.0308436 0.0308436" mass="0.04" diaginertia="0.00803675 0.00803675 0.008"/>
+      <joint name="c_palm_link2_joint_0" pos="0 0 0" axis="0 0 1" range="0 2.51327" actuatorfrcrange="-5 5"/>
+      <geom pos="0.0061009 -0.0697336 0" quat="0.737277 0 0 -0.67559" type="mesh" friction="4 0.5 0.3" solref="0.01" solimp="0.99 0.995" mesh="link2"/>
+      <body name="c_link3_joint" pos="0.0061009 -0.0697336 0" quat="0.737277 0 0 -0.67559">
+        <inertial pos="0.0140441 0.0117844 0" quat="0.298836 0.298836 0.640856 0.640856" mass="0.03" diaginertia="0.00602017 0.00602017 0.006"/>
+        <joint name="c_link2_link3_joint" pos="0 0 0" axis="0 0 1" range="0 2.51327" actuatorfrcrange="-5 5"/>
+        <geom pos="0.0421324 0.0353533 0" quat="0.939693 0 0 0.34202" type="mesh" friction="4 0.5 0.3" solref="0.01" solimp="0.99 0.995" mesh="link3"/>
+      </body>
+    </body>
+  </worldbody>
+</mujoco>

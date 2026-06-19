@@ -1,0 +1,22 @@
+<mujoco model="panda">
+  <compiler angle="radian"/>
+
+  <asset>
+    <mesh name="hand" content_type="model/obj" file="hand.obj"/>
+    <mesh name="finger" content_type="model/obj" file="finger.obj"/>
+  </asset>
+
+  <worldbody>
+    <geom type="mesh" friction="4 0.5 0.3" solref="0.01" solimp="0.99 0.995" mesh="hand"/>
+    <body name="panda_leftfinger" pos="0 0 0.0584">
+      <inertial pos="0 0 0" mass="0.01" diaginertia="0.002 0.002 0.002"/>
+      <joint name="panda_finger_joint1" pos="0 0 0" axis="0 1 0" type="slide" range="0 0.04" actuatorfrcrange="-20 20"/>
+      <geom type="mesh" friction="4 0.5 0.3" solref="0.01" solimp="0.99 0.995" mesh="finger"/>
+    </body>
+    <body name="panda_rightfinger" pos="0 0 0.0584">
+      <inertial pos="0 0 0" mass="0.01" diaginertia="0.002 0.002 0.002"/>
+      <joint name="panda_finger_joint2" pos="0 0 0" axis="0 -1 0" type="slide" range="0 0.04" actuatorfrcrange="-20 20"/>
+      <geom quat="0 0 0 1" type="mesh" friction="4 0.5 0.3" solref="0.01" solimp="0.99 0.995" mesh="finger"/>
+    </body>
+  </worldbody>
+</mujoco>

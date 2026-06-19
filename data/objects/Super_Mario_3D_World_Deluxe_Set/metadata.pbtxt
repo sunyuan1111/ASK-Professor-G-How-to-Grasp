@@ -1,0 +1,38 @@
+model {
+  file: "model.sdf"
+}
+name: "Super_Mario_3D_World_Deluxe_Set"
+description: "Super Mario 3D World Deluxe Set\n\357\277\275 Black Wii U Console\n\357\277\275 Super Mario 3D World Game \n\357\277\275 Nintendo Land Game\n\357\277\275 Wii U AC Adapter\n\357\277\275 Wii U GamePad AC Adapter\n\357\277\275 High Speed HDMI Cable\n\357\277\275 Sensor Bar\n\357\277\275 Wii U GamePad Cradle\n\357\277\275 Wii U GamePad Stand Support\n\357\277\275 Wii U Console Stand"
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "Nintendo"
+}
+annotations {
+  key: "gtin"
+  value: "00045496881627"
+}
+annotations {
+  key: "mpn"
+  value: "wupskagf"
+}
+annotations {
+  key: "sku"
+  value: "2014N"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+}

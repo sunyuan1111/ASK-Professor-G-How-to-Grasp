@@ -1,0 +1,70 @@
+{
+  "RIQ_palm_RIQ_link_1_joint_a": {
+    "RIQ_link_1_RIQ_link_2_joint_a": 0.999999999961546,
+    "RIQ_link_2_RIQ_link_3_joint_a": 0.9999999998270293,
+    "RIQ_link_0_RIQ_link_1_joint_b": 0.879712453756117,
+    "RIQ_link_1_RIQ_link_2_joint_b": 0.8797110161770489,
+    "RIQ_link_2_RIQ_link_3_joint_b": 0.8797109296571025
+  },
+  "RIQ_link_1_RIQ_link_2_joint_a": {
+    "RIQ_palm_RIQ_link_1_joint_a": 0.999999999961546,
+    "RIQ_link_2_RIQ_link_3_joint_a": 0.999999999897447,
+    "RIQ_link_0_RIQ_link_1_joint_b": 0.8797108502069788
+  },
+  "RIQ_link_2_RIQ_link_3_joint_a": {
+    "RIQ_palm_RIQ_link_1_joint_a": 0.9999999998270293,
+    "RIQ_link_1_RIQ_link_2_joint_a": 0.999999999897447,
+    "RIQ_link_0_RIQ_link_1_joint_b": 0.879709301606946
+  },
+  "RIQ_palm_RIQ_link_0_joint_b": {
+    "RIQ_link_0_RIQ_link_1_joint_b": 0.09754654187197975,
+    "RIQ_link_1_RIQ_link_2_joint_b": 0.09754654204254133,
+    "RIQ_link_2_RIQ_link_3_joint_b": 0.09754654166272231
+  },
+  "RIQ_link_0_RIQ_link_1_joint_b": {
+    "RIQ_palm_RIQ_link_1_joint_a": 0.879712453756117,
+    "RIQ_link_1_RIQ_link_2_joint_a": 0.8797108502069788,
+    "RIQ_link_2_RIQ_link_3_joint_a": 0.879709301606946,
+    "RIQ_palm_RIQ_link_0_joint_b": 0.09754654187197975,
+    "RIQ_link_1_RIQ_link_2_joint_b": 0.9999999999689234,
+    "RIQ_link_2_RIQ_link_3_joint_b": 0.9999999999663461,
+    "RIQ_link_0_RIQ_link_1_joint_c": 0.6763155443304555,
+    "RIQ_link_1_RIQ_link_2_joint_c": 0.6763171113485849,
+    "RIQ_link_2_RIQ_link_3_joint_c": 0.6763205074478231
+  },
+  "RIQ_link_1_RIQ_link_2_joint_b": {
+    "RIQ_palm_RIQ_link_1_joint_a": 0.8797110161770489,
+    "RIQ_palm_RIQ_link_0_joint_b": 0.09754654204254133,
+    "RIQ_link_0_RIQ_link_1_joint_b": 0.9999999999689234,
+    "RIQ_link_2_RIQ_link_3_joint_b": 1.0
+  },
+  "RIQ_link_2_RIQ_link_3_joint_b": {
+    "RIQ_palm_RIQ_link_1_joint_a": 0.8797109296571025,
+    "RIQ_palm_RIQ_link_0_joint_b": 0.09754654166272231,
+    "RIQ_link_0_RIQ_link_1_joint_b": 0.9999999999663461,
+    "RIQ_link_1_RIQ_link_2_joint_b": 1.0
+  },
+  "RIQ_palm_RIQ_link_0_joint": {
+    "RIQ_link_0_RIQ_link_1_joint_c": 0.20792109160458722,
+    "RIQ_link_1_RIQ_link_2_joint_c": 0.2079210915494171,
+    "RIQ_link_2_RIQ_link_3_joint_c": 0.2079210915537411
+  },
+  "RIQ_link_0_RIQ_link_1_joint_c": {
+    "RIQ_link_0_RIQ_link_1_joint_b": 0.6763155443304555,
+    "RIQ_palm_RIQ_link_0_joint": 0.20792109160458722,
+    "RIQ_link_1_RIQ_link_2_joint_c": 0.9999999999876794,
+    "RIQ_link_2_RIQ_link_3_joint_c": 0.999999999789067
+  },
+  "RIQ_link_1_RIQ_link_2_joint_c": {
+    "RIQ_link_0_RIQ_link_1_joint_b": 0.6763171113485849,
+    "RIQ_palm_RIQ_link_0_joint": 0.2079210915494171,
+    "RIQ_link_0_RIQ_link_1_joint_c": 0.9999999999876794,
+    "RIQ_link_2_RIQ_link_3_joint_c": 0.9999999998743088
+  },
+  "RIQ_link_2_RIQ_link_3_joint_c": {
+    "RIQ_link_0_RIQ_link_1_joint_b": 0.6763205074478231,
+    "RIQ_palm_RIQ_link_0_joint": 0.2079210915537411,
+    "RIQ_link_0_RIQ_link_1_joint_c": 0.999999999789067,
+    "RIQ_link_1_RIQ_link_2_joint_c": 0.9999999998743088
+  }
+}

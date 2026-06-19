@@ -1,0 +1,35 @@
+model {
+  file: "model.sdf"
+}
+name: "Samsung_CLTC406S_Toner_Cartridge_Cyan_1pack"
+description: "Samsung CLT-C406S Toner Cartridge, Cyan - 1-pack"
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "Samsung"
+}
+annotations {
+  key: "gtin"
+  value: "00635753715224"
+}
+annotations {
+  key: "sku"
+  value: "00635753715224"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+  first: "Consumer Goods"
+}

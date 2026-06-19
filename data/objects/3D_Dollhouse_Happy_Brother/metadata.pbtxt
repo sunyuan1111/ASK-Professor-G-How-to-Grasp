@@ -1,0 +1,35 @@
+model {
+  file: "model.sdf"
+}
+name: "3D_Dollhouse_Happy_Brother"
+description: "3D Dollhouse Happy Brother"
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "3D Dollhouse"
+}
+annotations {
+  key: "mpn"
+  value: "3dhpybro"
+}
+annotations {
+  key: "sku"
+  value: "3dhpybro"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+  first: "Consumer Goods"
+}

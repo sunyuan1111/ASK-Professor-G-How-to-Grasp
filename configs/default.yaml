@@ -1,0 +1,28 @@
+run:
+  output_root: runs
+  top_k: 5
+  seed: 7
+  cem:
+    num_samples: 128
+    num_elites: 16
+    max_iterations: 5
+    initial_std:
+      position: 0.01
+      rotation_deg: 10.0
+      synergy: 0.05
+
+selection:
+  gripper: wsg_50
+  object: 3D_Dollhouse_Lamp
+
+llm:
+  provider: ${GRASP_LLM_PROVIDER:-gemini}
+  model: ${GRASP_LLM_MODEL:-gemini-3-pro-preview}
+  base_url: ${OPENAI_BASE_URL:-}
+  timeout: ${GRASP_LLM_TIMEOUT:-180}
+  max_retries: ${GRASP_LLM_MAX_RETRIES:-3}
+
+paths:
+  grippers: configs/grippers.yaml
+  objects: configs/objects.yaml
+

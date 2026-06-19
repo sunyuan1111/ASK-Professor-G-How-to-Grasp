@@ -1,0 +1,33 @@
+{
+  "gripper_config": {
+    "name": "Barrett",
+    "hand_type": "underactuated",
+    "grasp_mode": "palm_grasp",
+    "urdf": "grippers/Barrett/Barrett.urdf",
+    "glpca": "grippers_config/Barrett/glpca.npz",
+    "max_opening_width": 0.15,
+    "min_opening_width": 0.01,
+    "bounding_box": [
+      0.089,
+      0.3218,
+      0.1345
+    ],
+    "tcp_offset": null,
+    "tcp_wrap": [
+      0.0,
+      0.0,
+      0.002
+    ],
+    "tip_links": [
+      "a_link3",
+      "b_link3",
+      "c_link3"
+    ],
+    "axis_labels": {
+      "length": "-Z",
+      "width": "+X",
+      "palm_normal": "+Z",
+      "closing_direction": "+Y"
+    }
+  }
+}

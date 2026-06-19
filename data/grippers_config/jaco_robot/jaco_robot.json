@@ -1,0 +1,31 @@
+
+
+{
+  "case_sensitive": true,
+  "include_others": true,
+  "allow_overlap": false,
+  "fail_on_unknown": true,
+
+  "groups": {
+        "thumb":  ["jaco_finger_joint_0"],
+        "index":  ["jaco_finger_joint_2"],
+        "middle": ["jaco_finger_joint_4"],
+        "ring":   [],
+        "little": []
+      },
+
+  "roles": {
+    "closing": ["jaco_finger_joint_0", 
+                "jaco_finger_joint_2",
+                "jaco_finger_joint_4"],
+
+    "swing":   []
+  },
+
+  "sampling": {
+    "swing_sets":   1,
+    "swing_seed":   2025,
+    "swing_margin": 0.01,
+    "cont_range":   1.2
+  }
+}

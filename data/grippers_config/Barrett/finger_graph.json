@@ -1,0 +1,52 @@
+{
+  "a_palm_link1_joint": {
+    "a_link1_link2_joint": 0.645574047807467,
+    "a_link2_link3_joint": 0.6455740482790422,
+    "b_link2_link3_joint": 0.5679196824195849
+  },
+  "a_link1_link2_joint": {
+    "a_palm_link1_joint": 0.645574047807467,
+    "a_link2_link3_joint": 1.0,
+    "b_palm_link1_joint": 0.5373166431512522,
+    "b_link1_link2_joint": 0.8797116880604741,
+    "b_link2_link3_joint": 0.8797126909075663
+  },
+  "a_link2_link3_joint": {
+    "a_palm_link1_joint": 0.6455740482790422,
+    "a_link1_link2_joint": 1.0,
+    "b_link1_link2_joint": 0.8797115295273434,
+    "b_link2_link3_joint": 0.8797125323682012
+  },
+  "b_palm_link1_joint": {
+    "a_link1_link2_joint": 0.5373166431512522,
+    "b_link1_link2_joint": 0.61078720491961,
+    "b_link2_link3_joint": 0.6107872060978005
+  },
+  "b_link1_link2_joint": {
+    "a_link1_link2_joint": 0.8797116880604741,
+    "a_link2_link3_joint": 0.8797115295273434,
+    "b_palm_link1_joint": 0.61078720491961,
+    "b_link2_link3_joint": 0.9999999999796207,
+    "c_palm_link2_joint_0": 0.6763166300095714,
+    "c_link2_link3_joint": 0.6763169535627465
+  },
+  "b_link2_link3_joint": {
+    "a_palm_link1_joint": 0.5679196824195849,
+    "a_link1_link2_joint": 0.8797126909075663,
+    "a_link2_link3_joint": 0.8797125323682012,
+    "b_palm_link1_joint": 0.6107872060978005,
+    "b_link1_link2_joint": 0.9999999999796207,
+    "c_palm_link2_joint_0": 0.676316844463679,
+    "c_link2_link3_joint": 0.6763171680326403
+  },
+  "c_palm_link2_joint_0": {
+    "b_link1_link2_joint": 0.6763166300095714,
+    "b_link2_link3_joint": 0.676316844463679,
+    "c_link2_link3_joint": 0.999999999980315
+  },
+  "c_link2_link3_joint": {
+    "b_link1_link2_joint": 0.6763169535627465,
+    "b_link2_link3_joint": 0.6763171680326403,
+    "c_palm_link2_joint_0": 0.999999999980315
+  }
+}

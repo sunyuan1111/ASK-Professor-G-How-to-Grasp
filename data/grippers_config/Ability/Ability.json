@@ -1,0 +1,32 @@
+
+
+{
+  "case_sensitive": true,
+  "include_others": true,
+  "allow_overlap": false,
+  "fail_on_unknown": true,
+
+  "groups": {
+        "thumb":  ["thumb_q1", "thumb_q2"],
+        "index":  ["index_q1", "index_q2"],
+        "middle": ["middle_q1", "middle_q2"],
+        "ring":   ["ring_q1", "ring_q2"],
+        "little": ["pinky_q1", "pinky_q2"]
+      },
+
+  "roles": {
+    "closing": ["thumb_q1", "thumb_q2",
+                "index_q1", "index_q2",
+                "middle_q1", "middle_q2",
+                "ring_q1", "ring_q2",
+                "pinky_q1", "pinky_q2"],
+    "swing":   []
+  },
+
+  "sampling": {
+    "swing_sets":   1,
+    "swing_seed":   2025,
+    "swing_margin": 0.01,
+    "cont_range":   1.2
+  }
+}

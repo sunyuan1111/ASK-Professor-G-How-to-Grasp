@@ -1,0 +1,96 @@
+{
+  "meta": {
+    "robot": "sawyer",
+    "base": "base_link",
+    "bounding_box_m": [
+      0.0659,
+      0.1055,
+      0.1209
+    ],
+    "num_fingers": 2,
+    "grasp_axes": {
+      "palm_normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "closing_direction": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "palm_normal_label": "+Z",
+      "closing_direction_label": "+Y"
+    },
+    "tcp_in_base": [
+      0.003,
+      0.0,
+      0.0455
+    ],
+    "tcp_distance": 0.0456,
+    "tcp_is_dynamic": false,
+    "tcp_source": "fingertip_avg",
+    "palm_center_in_base": [
+      0.003,
+      0.0,
+      0.0455
+    ],
+    "palm_center_distance": 0.0456,
+    "grasp_mode": "parallel"
+  },
+  "natural_language_description": "### Robot Structure Analysis: sawyer\nBase Link: 'base_link'. Approx Size: [ 65.9 105.5 120.9] mm.\nTopology Analysis detected 2 kinematic chains ending in leaf nodes:\n\n- **Chain Group: THUMB**\n  - Ends at leaf link: 'leftfinger' (Pos: [0.003, -0.023, 0.0455])\n  - Joint Sequence:\n    * finger_joint1 **(CLOSE)** [Closing]: Axis=[0.0, 1.0, 0.0] Range=[0, 0].\n\n- **Chain Group: INDEX**\n  - Ends at leaf link: 'rightfinger' (Pos: [0.003, 0.023, 0.0455])\n  - Joint Sequence:\n    * finger_joint2 **(CLOSE)** [Closing]: Axis=[0.0, 1.0, 0.0] Range=[0, 0].\n\n### Key Axes for Grasp Planning (in base_link frame)\n**IMPORTANT**: All directions below are defined in the hand's LOCAL base_link frame, at the INITIAL/OPEN pose. When fingers curl during grasping, their actual directions change.\n\n**PRIMARY AXES (use these for grasp planning):**\n- **palm_normal (+Z)**: The direction the palm FACES. This is your APPROACH DIRECTION - orient the hand so palm_normal points toward the object.\n- **closing_direction (+Y)**: The direction fingers move when CLOSING. Object should be positioned where fingers can close around it.\n\n**SECONDARY AXES (for reference only):**\n- **finger_extension (+Z)**: Direction fingers point when FULLY EXTENDED (initial pose). Note: This changes when fingers curl! Use palm_normal for approach direction instead.\n- **finger_spread (+Y)**: Direction across multiple fingers (lateral spread).\n\n#### Grasp Strategy: Two-finger Pinching\nThis hand has two jaws/fingers that move toward each other to PINCH objects.\n\n**How to grasp:**\n1. Orient wrist so `palm_normal` points toward the object\n2. Account for finger length - wrist must be offset from contact point\n3. Jaws close along `closing_direction` to pinch the object\n\n**Key insight:** Fingertips make contact, wrist is offset by finger length.\n\n### Geometric Offset and Grasp Strategy\nThe robot's Base Link (Wrist) is located at [0, 0, 0] in its local frame.\nFinger reach (from wrist to average fingertip): [0.003, 0.0, 0.0455]\nPalm center (from wrist to palm center): [0.003, 0.0, 0.0455]\n\n**Hand Structure Summary:**\n- Number of finger chains: 2\n- Average finger reach from wrist: [0.003, 0.0, 0.0455]\n- Max reach distance: ~0.050m\n\n**⚠️ CRITICAL: Grasp Mode Selection**\n\n✌️ **PARALLEL GRIPPER - Pinching Mode Only**\n\nThis gripper only performs pinching grasps with fingertips.\n\n**POSITION CALCULATION:**\n```\nwrist = object_surface + approach_dir × TCP_OFFSET\nTCP_OFFSET = 0.046m\n```\n\n**Orientation:**\n- Palm faces: +Z (approach direction)\n- Fingers close toward: +Y\n\n**Z-coordinate for side grasps:**\n- ALWAYS set wrist.z at object center height!\n\n### Dynamic Orientation Analysis (Self-Correction)\nBased on the URDF geometry, at the default pose `orn_rpy_deg = [0, 0, 0]`:\n1. The **Palm Normal** (Approach Direction) points towards **+Z**.\n2. The **Fingertips** extend towards **+Z**.\n\n**ROTATION STRATEGY (Vector Alignment):**\nTo grasp an object, you must rotate the hand so that the **Palm Normal (+Z)** aligns with the **Vector to Object**.\n- Example: If grasping from Top (+Z) down to object, the Vector to Object is **-Z** (Down).\n  -> You need to align **+Z** (Palm) with **-Z** (Target). This requires a **180 degree** rotation (Pitch).",
+  "kinematic_chains": [
+    {
+      "group_name": "thumb",
+      "tip_link": "leftfinger",
+      "tip_pos": [
+        0.003,
+        -0.023,
+        0.0455
+      ],
+      "joints": [
+        {
+          "name": "finger_joint1",
+          "type": "prismatic",
+          "role": "Closing",
+          "group": "thumb",
+          "range": [
+            0.0,
+            0.04
+          ],
+          "axis": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    {
+      "group_name": "index",
+      "tip_link": "rightfinger",
+      "tip_pos": [
+        0.003,
+        0.023,
+        0.0455
+      ],
+      "joints": [
+        {
+          "name": "finger_joint2",
+          "type": "prismatic",
+          "role": "Closing",
+          "group": "index",
+          "range": [
+            0.0,
+            0.04
+          ],
+          "axis": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        }
+      ]
+    }
+  ]
+}

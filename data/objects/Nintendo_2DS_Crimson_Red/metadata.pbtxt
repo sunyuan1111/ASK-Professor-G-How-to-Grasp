@@ -1,0 +1,38 @@
+model {
+  file: "model.sdf"
+}
+name: "Nintendo_2DS_Crimson_Red"
+description: "Nintendo 2DS\357\277\275 \357\277\275 Crimson Red\nThe Best of Two Worlds.  The Nintendo 2DS system brings the \npower of two systems together into a single, affordable package. Play all games\357\277\275both Nintendo DS and Nintendo 3DS\357\277\275in 2D.  Connect with friends, other players, and wireless hotspots using the wireless StreetPass\357\277\275 and SpotPass\357\277\275 communication modes to unlock exclusive content for games and download other entertainment. From games to photos and beyond, Nintendo 2DS is the ultimate 2D gaming experience.  \n\nNintendo 2DS is a 2D system that plays all Nintendo DS and Nintendo 3DS games. Nintendo 2DS is only capable of 2D display."
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "Nintendo"
+}
+annotations {
+  key: "gtin"
+  value: "00045496780920"
+}
+annotations {
+  key: "mpn"
+  value: "ftrskaaa"
+}
+annotations {
+  key: "sku"
+  value: "2014LC"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+}

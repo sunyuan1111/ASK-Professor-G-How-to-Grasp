@@ -1,0 +1,39 @@
+model {
+  file: "model.sdf"
+}
+name: "Santa_Cruz_Mens_G7kQXK7cIky"
+description: "Santa Cruz Mens"
+version: 1
+authors {
+  name: "Google"
+  email: "scanned-objects@google.com"
+}
+legal {
+  copyright: "Copyright 2020 Google LLC."
+  license: "Creative Commons Attribution 4.0 International"
+}
+annotations {
+  key: "brand"
+  value: "Crocs"
+}
+annotations {
+  key: "gtin"
+  value: "883503149847"
+}
+annotations {
+  key: "mpn"
+  value: "50004-00234"
+}
+annotations {
+  key: "sku"
+  value: "883503149847"
+}
+compatibilities {
+  name: "Gazebo"
+  version {
+    major: 11
+  }
+}
+categories {
+  first: "Shoe"
+}
