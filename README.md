@@ -11,7 +11,6 @@ Wanhao Niu<sup>*</sup>, Yuan Sun<sup>*</sup>, Qiyan Ke, Jie Xu, Hao Sun, Muyuan 
 [![Code](https://img.shields.io/badge/Code-NumPy%20%7C%20PyRender-green)](#quick-start)
 [![License](https://img.shields.io/badge/License-MIT-lightgrey)](LICENSE)
 
-**Project page:** <https://sunyuan1111.github.io/ASK-Professor-G-How-to-Grasp/>
 
 </div>
 
