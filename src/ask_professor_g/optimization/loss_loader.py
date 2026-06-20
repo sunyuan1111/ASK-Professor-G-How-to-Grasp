@@ -28,3 +28,31 @@ def _extract_calculate_loss(module: ModuleType, path: Path) -> Callable[[np.ndar
         raise TypeError(f"{path}: calculate_loss must be callable")
     return func
 
+
+def validate_loss_function(
+    path: str | Path,
+    *,
+    point_cloud: np.ndarray | None = None,
+) -> Callable[[np.ndarray, np.ndarray], float]:
+    """Load a generated loss and verify that it can evaluate one finite sample."""
+    func = load_loss_function(path)
+    sample_pose = np.eye(4, dtype=np.float64)
+    sample_points = point_cloud
+    if sample_points is None:
+        sample_points = np.array(
+            [
+                [0.0, 0.0, 0.0],
+                [0.01, 0.0, 0.0],
+                [0.0, 0.01, 0.0],
+                [0.0, 0.0, 0.01],
+            ],
+            dtype=np.float64,
+        )
+    value = func(sample_pose, sample_points)
+    try:
+        value_float = float(value)
+    except Exception as exc:
+        raise TypeError(f"{Path(path)}: calculate_loss must return a numeric scalar") from exc
+    if not np.isfinite(value_float):
+        raise ValueError(f"{Path(path)}: calculate_loss returned a non-finite value")
+    return func

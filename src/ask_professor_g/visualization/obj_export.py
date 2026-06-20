@@ -8,6 +8,9 @@ from typing import Any, Iterable
 
 import numpy as np
 
+from ..gripper_axes import local_gripper_axes, project_to_plane
+from .real_gripper import build_real_gripper_meshes, concatenate_meshes, estimate_parallel_opening_width
+
 
 def _rpy_to_matrix(roll: float, pitch: float, yaw: float) -> np.ndarray:
     cr, sr = math.cos(roll), math.sin(roll)
@@ -205,6 +208,9 @@ def export_optimized_grasps_obj(
     stage3_path: str | Path,
     output_dir: str | Path,
     top_n: int = 5,
+    gripper: dict[str, Any] | None = None,
+    gripper_urdf_path: str | Path | None = None,
+    gripper_glpca_path: str | Path | None = None,
 ) -> Path:
     object_mesh_path = Path(object_mesh_path)
     stage3 = json.loads(Path(stage3_path).read_text(encoding="utf-8"))
@@ -222,6 +228,18 @@ def export_optimized_grasps_obj(
     jaw_depth = max(diag * 0.08, 0.012)
     default_opening = max(diag * 0.18, 0.035)
 
+    axes = local_gripper_axes(gripper or {})
+    local_closing = np.asarray(axes["local_closing_axis"], dtype=float)
+    local_tcp = np.asarray(axes["local_tcp_axis"], dtype=float)
+    local_span = np.asarray(axes["local_width_axis"], dtype=float)
+    local_finger = project_to_plane(-local_tcp, local_closing, fallback=local_span)
+    local_depth = np.cross(local_closing, local_finger)
+    local_depth = local_depth / max(float(np.linalg.norm(local_depth)), 1e-8)
+    local_box_rotation = np.column_stack([local_closing, local_finger, local_depth])
+    if float(np.linalg.det(local_box_rotation)) < 0.0:
+        local_depth = -local_depth
+        local_box_rotation = np.column_stack([local_closing, local_finger, local_depth])
+
     next_index = 1
     with scene_path.open("w", encoding="utf-8") as handle:
         handle.write(f"mtllib {mtl_name}\n")
@@ -230,12 +248,22 @@ def export_optimized_grasps_obj(
             state = np.asarray(grasp["result"], dtype=float)
             center = state[:3]
             rotation = _rpy_to_matrix(float(state[3]), float(state[4]), float(state[5]))
+            box_rotation = rotation @ local_box_rotation
             material = "gripper_best" if idx == 0 else "gripper"
-            opening = float(np.clip(state[6] * 0.11 if len(state) > 6 else default_opening, 0.012, 0.11))
+            max_opening = float((gripper or {}).get("max_opening_width", 0.11))
+            opening, opening_meta = estimate_parallel_opening_width(
+                state=state,
+                gripper=gripper or {},
+                urdf_path=gripper_urdf_path,
+                glpca_path=gripper_glpca_path,
+            )
+            if opening_meta.get("source") == "linear_config_fallback" and len(state) <= 6:
+                opening = default_opening
+            opening = float(np.clip(opening, 0.012, max_opening))
             for side, sign in [("left", -1.0), ("right", 1.0)]:
-                local_offset = np.array([sign * opening / 2.0, 0.0, 0.0])
+                local_offset = sign * opening / 2.0 * local_closing - jaw_length * 0.25 * local_tcp
                 jaw_center = center + rotation @ local_offset
-                vertices = _box_vertices(jaw_center, [jaw_width, jaw_length, jaw_depth], rotation)
+                vertices = _box_vertices(jaw_center, [jaw_width, jaw_length, jaw_depth], box_rotation)
                 next_index = _write_box(
                     handle,
                     vertices,
@@ -243,8 +271,8 @@ def export_optimized_grasps_obj(
                     material,
                     next_index,
                 )
-            palm_center = center + rotation @ np.array([0.0, -jaw_length * 0.45, 0.0])
-            palm_vertices = _box_vertices(palm_center, [opening + jaw_width, jaw_width, jaw_depth], rotation)
+            palm_center = center - rotation @ (local_tcp * jaw_length * 0.68)
+            palm_vertices = _box_vertices(palm_center, [opening + jaw_width, jaw_width, jaw_depth], box_rotation)
             next_index = _write_box(
                 handle,
                 palm_vertices,
@@ -252,4 +280,68 @@ def export_optimized_grasps_obj(
                 material,
                 next_index,
             )
+    if gripper and gripper_urdf_path:
+        try:
+            export_real_gripper_grasps_obj(
+                object_mesh_path=object_mesh_path,
+                stage3_path=stage3_path,
+                output_dir=output_dir,
+                gripper=gripper,
+                gripper_urdf_path=gripper_urdf_path,
+                gripper_glpca_path=gripper_glpca_path,
+                top_n=top_n,
+            )
+            export_real_gripper_grasps_obj(
+                object_mesh_path=object_mesh_path,
+                stage3_path=stage3_path,
+                output_dir=output_dir,
+                gripper=gripper,
+                gripper_urdf_path=gripper_urdf_path,
+                gripper_glpca_path=gripper_glpca_path,
+                top_n=1,
+                output_name="final_grasp_real.obj",
+            )
+        except Exception:
+            pass
+    return scene_path
+
+
+def export_real_gripper_grasps_obj(
+    *,
+    object_mesh_path: str | Path,
+    stage3_path: str | Path,
+    output_dir: str | Path,
+    gripper: dict[str, Any],
+    gripper_urdf_path: str | Path,
+    gripper_glpca_path: str | Path | None = None,
+    top_n: int = 5,
+    output_name: str = "optimized_grasps_real.obj",
+) -> Path:
+    import trimesh
+
+    object_mesh_path = Path(object_mesh_path)
+    stage3 = json.loads(Path(stage3_path).read_text(encoding="utf-8"))
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    object_mesh = trimesh.load(object_mesh_path, force="mesh")
+    if isinstance(object_mesh, trimesh.Scene):
+        object_mesh = trimesh.util.concatenate(tuple(object_mesh.geometry.values()))
+    object_mesh.visual.vertex_colors = [185, 185, 185, 255]
+
+    scene_meshes = [object_mesh.copy()]
+    for idx, grasp in enumerate(stage3.get("grasps", [])[:top_n]):
+        state = np.asarray(grasp["result"], dtype=float)
+        color = [70, 145, 255, 230] if idx == 0 else [35, 50, 70, 165]
+        real = build_real_gripper_meshes(
+            state=state,
+            gripper=gripper,
+            urdf_path=gripper_urdf_path,
+            glpca_path=gripper_glpca_path,
+            color=color,
+        )
+        scene_meshes.append(concatenate_meshes(real.meshes))
+
+    scene = trimesh.util.concatenate(scene_meshes)
+    scene_path = output_dir / output_name
+    scene.export(scene_path)
     return scene_path

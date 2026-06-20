@@ -32,6 +32,17 @@ def extract_json(text: str) -> dict[str, Any] | list[Any]:
 
 def extract_python(text: str) -> str:
     candidate = _strip_fence(text)
+    start_candidates = [
+        idx
+        for idx in [
+            candidate.find("import numpy as np"),
+            candidate.find("import numpy"),
+            candidate.find("from numpy"),
+        ]
+        if idx >= 0
+    ]
+    if start_candidates:
+        return sanitize_python(candidate[min(start_candidates) :].strip())
     lines = candidate.splitlines()
     for idx, line in enumerate(lines):
         stripped = line.strip()

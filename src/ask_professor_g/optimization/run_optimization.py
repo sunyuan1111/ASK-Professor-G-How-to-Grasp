@@ -26,6 +26,18 @@ def _expand_if_singleton(bounds: list[float], delta: float) -> list[float]:
     return bounds
 
 
+def _bounded_center(bounds: list[float], *, default: float = 0.0) -> float:
+    try:
+        lo, hi = float(bounds[0]), float(bounds[1])
+    except (TypeError, ValueError, IndexError):
+        return float(default)
+    if not np.isfinite(lo) or not np.isfinite(hi):
+        return float(default)
+    if lo > hi:
+        lo, hi = hi, lo
+    return float(np.clip((lo + hi) / 2.0, lo, hi))
+
+
 def parse_grasp_state(grasp: dict[str, Any]) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     pos = grasp["wrist_pose_relative"]["pos_xyz_m"]
     rpy = grasp["wrist_pose_relative"]["orn_rpy_deg"]
@@ -62,6 +74,22 @@ def parse_grasp_state(grasp: dict[str, Any]) -> tuple[np.ndarray, np.ndarray, np
     mean = (lower + upper) / 2.0
     std = np.maximum((upper - lower) / 2.0, 1e-4)
     return mean, std, lower, upper
+
+
+def apply_fixed_synergy_center(state: np.ndarray, grasp: dict[str, Any]) -> np.ndarray:
+    """Keep gripper synergy values at Stage 1 calibrated centers.
+
+    Stage 2 losses receive only a 4x4 pose matrix, so CEM cannot observe s0/s1/s2.
+    Fixing these dimensions avoids random drift toward visually too-small openings.
+    """
+    result = np.asarray(state, dtype=np.float64).copy()
+    if result.size < 9:
+        return result
+    syn = grasp.get("synergy_config", {})
+    result[6] = _bounded_center(_to_range(syn.get("s0", [result[6], result[6]])), default=float(result[6]))
+    result[7] = _bounded_center(_to_range(syn.get("s1", [result[7], result[7]])), default=float(result[7]))
+    result[8] = _bounded_center(_to_range(syn.get("s2", [result[8], result[8]])), default=float(result[8]))
+    return result
 
 
 def semantic_priority_penalty(grasp: dict[str, Any]) -> float:
@@ -127,6 +155,7 @@ def run_cem_optimization(
             clamp_min=lower,
             clamp_max=upper,
         )
+        state = apply_fixed_synergy_center(state, grasp)
         name = grasp.get("type", f"grasp_{idx}")
         sem_penalty = semantic_priority_penalty(grasp)
         adjusted_loss = raw_loss + sem_penalty

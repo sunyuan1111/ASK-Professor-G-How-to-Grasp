@@ -23,7 +23,9 @@ def test_cached_demo_runs(tmp_path):
     assert (run_dir / "step3_output.json").exists()
     assert (run_dir / "final_grasp_report.json").exists()
     assert (run_dir / "visualizations" / "final_grasp_render.png").exists()
+    assert (run_dir / "visualizations" / "final_grasp_real_views.png").exists()
     assert (run_dir / "visualizations" / "final_grasp_diagnostics.png").exists()
+    assert (run_dir / "visualizations" / "obj_scene" / "final_grasp_real.obj").exists()
 
     report = json.loads((run_dir / "final_grasp_report.json").read_text(encoding="utf-8"))
     assert report["diagnostics"]["target_alignment"] == "OK"

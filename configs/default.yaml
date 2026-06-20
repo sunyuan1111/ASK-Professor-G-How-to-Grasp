@@ -25,4 +25,3 @@ llm:
 paths:
   grippers: configs/grippers.yaml
   objects: configs/objects.yaml
-

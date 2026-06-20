@@ -22,8 +22,8 @@ class OpenAICompatibleClient(LLMClient):
     def from_settings(cls, settings: dict[str, Any]) -> "OpenAICompatibleClient":
         return cls(
             model=settings.get("model") or os.environ.get("GRASP_LLM_MODEL", "gpt-4o"),
-            api_key=os.environ.get("OPENAI_API_KEY"),
-            base_url=settings.get("base_url") or os.environ.get("OPENAI_BASE_URL"),
+            api_key=os.environ.get("OPENAI_API_KEY") or os.environ.get("API_KEY"),
+            base_url=settings.get("base_url") or os.environ.get("OPENAI_BASE_URL") or os.environ.get("API_BASE_URL"),
             timeout=int(settings.get("timeout") or os.environ.get("GRASP_LLM_TIMEOUT", 180)),
             max_retries=int(settings.get("max_retries") or os.environ.get("GRASP_LLM_MAX_RETRIES", 3)),
         )
@@ -36,7 +36,7 @@ class OpenAICompatibleClient(LLMClient):
         image_path: str | None = None,
     ) -> str:
         if not self.api_key:
-            raise RuntimeError("OPENAI_API_KEY is required for provider 'openai-compatible'.")
+            raise RuntimeError("OPENAI_API_KEY or API_KEY is required for provider 'openai-compatible'.")
         try:
             from openai import OpenAI
         except ImportError as exc:
@@ -66,4 +66,3 @@ class OpenAICompatibleClient(LLMClient):
                 if attempt < self.max_retries - 1:
                     time.sleep(2**attempt)
         raise RuntimeError(f"OpenAI-compatible request failed: {last_error}")
-

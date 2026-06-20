@@ -2,6 +2,7 @@ import numpy as np
 
 from ask_professor_g.optimization.cem import CEMOptimizer
 from ask_professor_g.optimization.loss_loader import load_loss_function
+from ask_professor_g.optimization.run_optimization import apply_fixed_synergy_center
 
 
 def test_cem_optimizer_converges_on_position_loss():
@@ -29,3 +30,20 @@ def test_loss_loader_requires_calculate_loss(tmp_path):
     else:
         raise AssertionError("Expected AttributeError")
 
+
+
+def test_apply_fixed_synergy_center_uses_stage1_calibrated_bounds():
+    state = np.array([0.1, -0.2, 0.3, 0.01, 0.02, 0.03, 0.12, 0.9, -0.7])
+    grasp = {
+        "synergy_config": {
+            "s0": [0.46, 0.54],
+            "s1": [0.1, 0.3],
+            "s2": [-0.2, 0.2],
+        }
+    }
+
+    fixed = apply_fixed_synergy_center(state, grasp)
+
+    np.testing.assert_allclose(fixed[:6], state[:6])
+    np.testing.assert_allclose(fixed[6:], [0.5, 0.2, 0.0])
+    np.testing.assert_allclose(state[6:], [0.12, 0.9, -0.7])

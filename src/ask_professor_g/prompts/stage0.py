@@ -15,13 +15,16 @@ def build_stage0_prompt(gripper: dict[str, Any], obj: dict[str, Any], *, output_
         "system": (
             "You are Prof. G, an expert robotic vision and grasping planner. Return valid JSON only. "
             "Stage 0 must produce semantic 2D grasp target regions from the RGB observation, not final grasps. "
-            "These visual proposals are the only semantic seed for the later RGB-D 2D-to-3D verifier."
+            "These visual proposals are the only semantic seed for the later RGB-D 2D-to-3D verifier. "
+            "Prefer exposed, accessible surface patches where the gripper can approach without its palm or fingers "
+            "intersecting the object."
         ),
         "user": (
             "Analyze the attached RGB observation. The image contains an axis overlay: red=+X, green=+Y, blue=+Z. "
             "Propose visual semantic grasp regions as normalized 2D candidate points. Treat this as the paper's "
             "Object Image step: you are not allowed to use hidden masks, labels, or ground-truth keypoints. "
-            "Prefer task-safe functional regions and avoid fragile, dangerous, or semantically forbidden parts.\n\n"
+            "Prefer task-safe functional regions and avoid fragile, dangerous, or semantically forbidden parts. "
+            "A visually centered point is not enough: the chosen point must also be reachable by the gripper body.\n\n"
             "Required JSON schema:\n"
             "{\n"
             '  "object_analysis": "string",\n'
@@ -49,6 +52,11 @@ def build_stage0_prompt(gripper: dict[str, Any], obj: dict[str, Any], *, output_
             "- Include at least one robust primary functional grasp if visible, such as a stem, handle, waist, body, or stable base support.\n"
             "- approach_direction must be one of TopDown, SideX, SideNegX, SideY, SideNegY.\n"
             "- closing_direction is a world-frame 3D pinch axis perpendicular to approach_direction.\n"
+            "- Reject points in concave pockets, holes, undercuts, handle roots, or occluded interiors if the gripper palm/body would collide before the fingers reach the contact patch.\n"
+            "- Account for finger thickness and insertion clearance. A thin handle is only good if there is free space for both fingers around it.\n"
+            "- For handles/rims, target the exposed middle span or outer wall, not the root attached to the object body unless there is clear side access.\n"
+            "- closing_direction must go across the local graspable width. Do not aim the closing axis into solid mass or along the long axis of a handle/stem.\n"
+            "- Prefer points whose approach ray from the named approach_direction reaches the surface from outside the object.\n"
             "- Do not output wrist pose, RPY, or synergy in Stage 0.\n\n"
             f"Context JSON:\n{json.dumps(context, indent=2)}"
         ),

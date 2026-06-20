@@ -68,11 +68,14 @@ runs/{timestamp}_{gripper}_{object}/
     stage0_3d_validation.png
     grasp_points_visualization.png
     final_grasp_render.png
+    final_grasp_real_views.png
     final_grasp_diagnostics.png
     optimization_overview.png
     obj_scene/
       stage0_grasp_points.obj
       optimized_grasps.obj
+      final_grasp_real.obj
+      optimized_grasps_real.obj
 ```
 
 ## Visualization
@@ -84,11 +87,14 @@ The public pipeline writes both image and OBJ evidence for debugging and paper-s
 | Stage 0 | `visualizations/stage0_2d_points.png` | VLM 2D candidate points drawn on the RGB observation. |
 | Geometry | `visualizations/stage0_3d_validation.png` | Validated 3D candidates projected back to the observation with measured widths. |
 | Geometry | `visualizations/grasp_points_visualization.png` | Object mesh rendered with lifted 3D grasp points and local normals. |
-| Final grasp | `visualizations/final_grasp_render.png` | Best CEM grasp rendered with an object mesh and WSG-style gripper proxy. |
+| Final grasp | `visualizations/final_grasp_render.png` | Best CEM grasp rendered with the object mesh and the real gripper URDF visual meshes when available. |
+| Final grasp | `visualizations/final_grasp_real_views.png` | Multi-view real-gripper render for checking contact alignment when the gripper body occludes the RGB-D view. |
 | Final grasp | `visualizations/final_grasp_diagnostics.png` | XY/XZ/YZ diagnostic projections with opening, target-distance, and surface-distance checks. |
 | Final grasp | `final_grasp_report.json` | Machine-readable sanity report for the best grasp. |
 | OBJ | `visualizations/obj_scene/stage0_grasp_points.obj` | Single OBJ scene containing the object mesh and Stage 0 3D markers. |
+| OBJ | `visualizations/obj_scene/final_grasp_real.obj` | Single OBJ scene containing the object mesh and the top-1 real gripper mesh. |
 | CEM | `visualizations/obj_scene/optimized_grasps.obj` | Single OBJ scene containing the object mesh and optimized gripper proxies. |
+| CEM | `visualizations/obj_scene/optimized_grasps_real.obj` | Single OBJ scene containing the object mesh and top-k real gripper meshes. |
 
 ## Repository Structure
 
@@ -194,6 +200,7 @@ set OPENAI_BASE_URL=https://api.openai.com/v1
 ```
 
 Any provider exposing an OpenAI-compatible API can be used by changing `OPENAI_BASE_URL`.
+The shorter aliases `API_KEY` and `API_BASE_URL` are also accepted for local testing with proxy services.
 
 ## Reproduction Checks
 

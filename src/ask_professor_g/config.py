@@ -12,6 +12,21 @@ import yaml
 _ENV_PATTERN = re.compile(r"^\$\{([^}:]+)(?::-([^}]*))?\}$")
 
 
+def load_dotenv(path: str | Path = ".env") -> None:
+    dotenv_path = Path(path)
+    if not dotenv_path.exists():
+        return
+    for raw_line in dotenv_path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        name, value = line.split("=", 1)
+        name = name.strip().lstrip("\ufeff")
+        value = value.strip().strip('"').strip("'")
+        if name and name not in os.environ:
+            os.environ[name] = value
+
+
 def _resolve_env(value: Any) -> Any:
     if isinstance(value, dict):
         return {key: _resolve_env(item) for key, item in value.items()}
@@ -96,6 +111,7 @@ def load_config(
     repo_root = config_path.resolve().parents[1] if config_path.parent.name == "configs" else Path.cwd()
     if not (repo_root / ".git").exists():
         repo_root = Path.cwd()
+    load_dotenv(repo_root / ".env")
 
     raw = load_yaml(config_path)
     if overrides:
