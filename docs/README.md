@@ -8,6 +8,7 @@ This directory contains a static project website for **ASK Professor G: How to G
 - `styles.css`: all page styling.
 - `assets/paper-fig*.png`: paper figures used by the project page.
 - `assets/demo-video.mp4`: the demo video copied from the workspace root `vedio.mp4`.
+- `media/`: generated demo images used directly by the project page. Keep these files in regular Git, not Git LFS, so GitHub Pages can serve them.
 
 ## Preview Locally
 

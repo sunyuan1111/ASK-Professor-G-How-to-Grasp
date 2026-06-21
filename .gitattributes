@@ -16,3 +16,4 @@
 # GitHub Pages does not serve Git LFS objects during site builds.
 # Keep project-page media in regular Git so docs/ renders after publishing.
 docs/assets/** -filter -diff -merge -text
+docs/media/** -filter -diff -merge -text
