@@ -11,6 +11,7 @@ Wanhao Niu<sup>*</sup>, Yuan Sun<sup>*</sup>, Qiyan Ke, Jie Xu, Hao Sun, Muyuan 
 [![Code](https://img.shields.io/badge/Code-NumPy%20%7C%20PyRender-green)](#quick-start)
 [![License](https://img.shields.io/badge/License-MIT-lightgrey)](LICENSE)
 
+:camera: **RGB-D observation** &nbsp; | &nbsp; :robot: **Gripper URDF** &nbsp; | &nbsp; :brain: **Semantic proposals** &nbsp; | &nbsp; :triangular_ruler: **3D validation** &nbsp; | &nbsp; :dart: **CEM refinement**
 
 </div>
 
@@ -23,6 +24,9 @@ Wanhao Niu<sup>*</sup>, Yuan Sun<sup>*</sup>, Qiyan Ke, Jie Xu, Hao Sun, Muyuan 
 
 ASK Professor G is a training-free grasp synthesis framework for heterogeneous grippers. Given a single RGB-D observation and a gripper URDF, the system asks a foundation model to propose semantic visual grasp regions, verifies them geometrically in 3D, expands valid regions into pose-synergy search boxes, compiles an executable objective, and refines the final grasp with Cross-Entropy Method optimization.
 
+| :camera: Input | :brain: Reasoning | :triangular_ruler: Geometry | :dart: Optimization |
+| --- | --- | --- | --- |
+| Single RGB-D observation plus a gripper URDF | VLM-guided semantic grasp regions and grasp intent | Depth lifting, normal estimation, width checks, and candidate filtering | Executable loss plus CEM search over pose and synergy |
 
 <div align="center">
   <img src="docs/assets/paper-fig2-architecture.png" width="88%" alt="ASK Professor G architecture">
@@ -30,13 +34,19 @@ ASK Professor G is a training-free grasp synthesis framework for heterogeneous g
 
 ## Highlights
 
-- **Training-free cross-gripper grasping**: no gripper-specific retraining is required when switching to a new URDF-specified end-effector.
-- **Semantic visual proposals**: Stage 0 predicts graspable 2D regions directly on the RGB observation instead of producing final poses.
-- **RGB-D geometry audit**: candidate pixels are lifted into 3D using depth and camera calibration, then checked with local geometry and gripper width constraints.
-- **Objective compilation**: Stage 2 produces a `calculate_loss(pose_mat, point_cloud) -> float` function with target, contact, collision/clearance, orientation, and semantic-priority terms.
-- **CEM refinement**: final grasps are optimized in a unified pose-synergy state space.
+|  | Capability | What it gives |
+| :--: | --- | --- |
+| :arrows_counterclockwise: | **Training-free cross-gripper grasping** | No gripper-specific retraining is required when switching to a new URDF-specified end-effector. |
+| :round_pushpin: | **Semantic visual proposals** | Stage 0 predicts graspable 2D regions directly on the RGB observation instead of producing final poses. |
+| :mag: | **RGB-D geometry audit** | Candidate pixels are lifted into 3D using depth and camera calibration, then checked with local geometry and gripper width constraints. |
+| :memo: | **Objective compilation** | Stage 2 produces a `calculate_loss(pose_mat, point_cloud) -> float` function with target, contact, collision/clearance, orientation, and semantic-priority terms. |
+| :chart_with_upwards_trend: | **CEM refinement** | Final grasps are optimized in a unified pose-synergy state space. |
 
 ## Method Pipeline
+
+| :camera: Observation | :round_pushpin: Stage 0 | :triangular_ruler: Geometry | :compass: Stage 1 | :memo: Stage 2 | :dart: Stage 3 |
+| --- | --- | --- | --- | --- | --- |
+| RGB-D + URDF | Visual semantic 2D proposals | 2D-to-3D probing and validation | Pose-synergy search region | Executable loss or cached loss | CEM-ranked grasp results |
 
 ```text
 RGB-D observation + gripper URDF
@@ -83,11 +93,11 @@ The public pipeline records image and OBJ evidence for reproducibility and quali
 
 | Stage | Output | Description |
 | --- | --- | --- |
-| Stage 0 | `visualizations/stage0_2d_points.png`<br><img src="docs/media/lamp_wsg50_readme_clean/stage0_2d_points.png" width="260" alt="Stage 0 2D candidate points"> | VLM 2D candidate points drawn on the RGB observation. |
-| Geometry | `visualizations/stage0_3d_validation.png`<br><img src="docs/media/lamp_wsg50_readme_clean/stage0_3d_validation.png" width="260" alt="3D validation projected to RGB"> | Validated 3D candidates projected back to the observation with measured widths. |
-| Geometry | `visualizations/grasp_points_visualization.png`<br><img src="docs/media/lamp_wsg50_readme_clean/grasp_points_visualization.png" width="260" alt="Lifted 3D grasp points and local normals"> | Object mesh rendered with lifted 3D grasp points and local normals. |
-| Final grasp | `visualizations/final_grasp_render.png`<br><img src="docs/media/lamp_wsg50_readme_clean/final_grasp_render.png" width="260" alt="Final CEM grasp render"> | Best CEM grasp rendered with the object mesh and the real gripper URDF visual meshes when available. |
-| Final grasp | `visualizations/final_grasp_real_views.png`<br><img src="docs/media/lamp_wsg50_readme_clean/final_grasp_real_views.png" width="260" alt="Final real gripper multi-view render"> | Multi-view real-gripper render for checking contact alignment when the gripper body occludes the RGB-D view. |
+| :round_pushpin: Stage 0 | `visualizations/stage0_2d_points.png`<br><img src="docs/media/lamp_wsg50_readme_clean/stage0_2d_points.png" width="260" alt="Stage 0 2D candidate points"> | VLM 2D candidate points drawn on the RGB observation. |
+| :triangular_ruler: Geometry | `visualizations/stage0_3d_validation.png`<br><img src="docs/media/lamp_wsg50_readme_clean/stage0_3d_validation.png" width="260" alt="3D validation projected to RGB"> | Validated 3D candidates projected back to the observation with measured widths. |
+| :mag: Geometry | `visualizations/grasp_points_visualization.png`<br><img src="docs/media/lamp_wsg50_readme_clean/grasp_points_visualization.png" width="260" alt="Lifted 3D grasp points and local normals"> | Object mesh rendered with lifted 3D grasp points and local normals. |
+| :dart: Final grasp | `visualizations/final_grasp_render.png`<br><img src="docs/media/lamp_wsg50_readme_clean/final_grasp_render.png" width="260" alt="Final CEM grasp render"> | Best CEM grasp rendered with the object mesh and the real gripper URDF visual meshes when available. |
+| :eyes: Final grasp | `visualizations/final_grasp_real_views.png`<br><img src="docs/media/lamp_wsg50_readme_clean/final_grasp_real_views.png" width="260" alt="Final real gripper multi-view render"> | Multi-view real-gripper render for checking contact alignment when the gripper body occludes the RGB-D view. |
 
 ## Repository Structure
 
@@ -140,6 +150,12 @@ pip install -e ".[llm]"
 If PyRender/OpenGL is unavailable on a machine, the pipeline falls back to a deterministic orthographic renderer. The selected renderer is recorded in `render/render_metadata.json`.
 
 ## Quick Start
+
+| Mode | Command | Use when |
+| --- | --- | --- |
+| :zap: Cached smoke test | `python scripts/run_cached_demo.py --run-dir runs/cached_demo` | You want a no-API sanity check. |
+| :rocket: Full pipeline | `python scripts/run_pipeline.py --config configs/default.yaml` | You want the public end-to-end workflow. |
+| :wrench: Custom pair | `python scripts/run_pipeline.py --gripper wsg_50 --object 3D_Dollhouse_Lamp` | You want to swap gripper/object IDs from the configs. |
 
 Run the offline cached demo without any API key:
 
@@ -215,11 +231,12 @@ Expected smoke-test behavior:
 
 ## Data and Assets
 
-The default assets are managed with Git LFS:
+Large reproducibility assets are managed with Git LFS:
 
 - gripper URDFs and configuration files under `data/grippers/` and `data/grippers_config/`
 - object meshes, URDFs, thumbnails, and point clouds under `data/objects/`
-- project-page figures and media under `docs/assets/` and `docs/media/`
+
+Project-page figures and demo media under `docs/assets/` and `docs/media/` are stored in regular Git so GitHub Pages can serve them directly.
 
 The original research sandbox is kept locally under `oldcode/` and is ignored by Git.
 
