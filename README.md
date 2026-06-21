@@ -88,11 +88,6 @@ The public pipeline records image and OBJ evidence for reproducibility and quali
 | Geometry | `visualizations/grasp_points_visualization.png`<br><img src="docs/media/lamp_wsg50_readme_clean/grasp_points_visualization.png" width="260" alt="Lifted 3D grasp points and local normals"> | Object mesh rendered with lifted 3D grasp points and local normals. |
 | Final grasp | `visualizations/final_grasp_render.png`<br><img src="docs/media/lamp_wsg50_readme_clean/final_grasp_render.png" width="260" alt="Final CEM grasp render"> | Best CEM grasp rendered with the object mesh and the real gripper URDF visual meshes when available. |
 | Final grasp | `visualizations/final_grasp_real_views.png`<br><img src="docs/media/lamp_wsg50_readme_clean/final_grasp_real_views.png" width="260" alt="Final real gripper multi-view render"> | Multi-view real-gripper render for checking contact alignment when the gripper body occludes the RGB-D view. |
-| Final grasp | `final_grasp_report.json` | Machine-readable sanity report for the best grasp. |
-| OBJ | `visualizations/obj_scene/stage0_grasp_points.obj` | Single OBJ scene containing the object mesh and Stage 0 3D markers. |
-| OBJ | `visualizations/obj_scene/final_grasp_real.obj` | Single OBJ scene containing the object mesh and the top-1 real gripper mesh. |
-| CEM | `visualizations/obj_scene/optimized_grasps.obj` | Single OBJ scene containing the object mesh and optimized gripper proxies. |
-| CEM | `visualizations/obj_scene/optimized_grasps_real.obj` | Single OBJ scene containing the object mesh and top-k real gripper meshes. |
 
 ## Repository Structure
 
