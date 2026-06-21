@@ -79,22 +79,16 @@ runs/{timestamp}_{gripper}_{object}/
 
 ## Visualization
 
-The public pipeline writes both image and OBJ evidence for debugging and paper-style inspection. The example below shows the evidence chain for `wsg_50` grasping `3D_Dollhouse_Lamp`: Stage 0 marks semantic 2D candidates, geometry probing validates the candidates in 3D, and the final grasp is checked with real-gripper multi-view rendering and diagnostic projections.
-
-<div align="center">
-  <img src="docs/media/lamp_wsg50_stem_demo/overview.png" width="92%" alt="Visualization evidence for WSG-50 grasping the 3D Dollhouse Lamp">
-</div>
-
-CEM convergence history is stored in `step3_output.json` for each optimized candidate. The README focuses on the visual evidence chain rather than the per-candidate optimization overview image.
+The public pipeline writes both image and OBJ evidence for debugging and paper-style inspection. The table below shows the standard outputs and representative previews from `wsg_50` grasping `3D_Dollhouse_Lamp`. CEM convergence history is stored in `step3_output.json` for each optimized candidate.
 
 | Stage | Output | Description |
 | --- | --- | --- |
-| Stage 0 | `visualizations/stage0_2d_points.png` | VLM 2D candidate points drawn on the RGB observation. |
-| Geometry | `visualizations/stage0_3d_validation.png` | Validated 3D candidates projected back to the observation with measured widths. |
-| Geometry | `visualizations/grasp_points_visualization.png` | Object mesh rendered with lifted 3D grasp points and local normals. |
-| Final grasp | `visualizations/final_grasp_render.png` | Best CEM grasp rendered with the object mesh and the real gripper URDF visual meshes when available. |
-| Final grasp | `visualizations/final_grasp_real_views.png` | Multi-view real-gripper render for checking contact alignment when the gripper body occludes the RGB-D view. |
-| Final grasp | `visualizations/final_grasp_diagnostics.png` | XY/XZ/YZ diagnostic projections with opening, target-distance, and surface-distance checks. |
+| Stage 0 | `visualizations/stage0_2d_points.png`<br><img src="docs/media/lamp_wsg50_stem_demo/stage0_2d_points.png" width="260" alt="Stage 0 2D candidate points"> | VLM 2D candidate points drawn on the RGB observation. |
+| Geometry | `visualizations/stage0_3d_validation.png`<br><img src="docs/media/lamp_wsg50_stem_demo/stage0_3d_validation.png" width="260" alt="3D validation projected to RGB"> | Validated 3D candidates projected back to the observation with measured widths. |
+| Geometry | `visualizations/grasp_points_visualization.png`<br><img src="docs/media/lamp_wsg50_stem_demo/grasp_points_visualization.png" width="260" alt="Lifted 3D grasp points and local normals"> | Object mesh rendered with lifted 3D grasp points and local normals. |
+| Final grasp | `visualizations/final_grasp_render.png`<br><img src="docs/media/lamp_wsg50_stem_demo/final_grasp_render.png" width="260" alt="Final CEM grasp render"> | Best CEM grasp rendered with the object mesh and the real gripper URDF visual meshes when available. |
+| Final grasp | `visualizations/final_grasp_real_views.png`<br><img src="docs/media/lamp_wsg50_stem_demo/final_grasp_real_views.png" width="260" alt="Final real gripper multi-view render"> | Multi-view real-gripper render for checking contact alignment when the gripper body occludes the RGB-D view. |
+| Final grasp | `visualizations/final_grasp_diagnostics.png`<br><img src="docs/media/lamp_wsg50_stem_demo/final_grasp_diagnostics.png" width="260" alt="Final grasp diagnostic projections"> | XY/XZ/YZ diagnostic projections with opening, target-distance, and surface-distance checks. |
 | Final grasp | `final_grasp_report.json` | Machine-readable sanity report for the best grasp. |
 | OBJ | `visualizations/obj_scene/stage0_grasp_points.obj` | Single OBJ scene containing the object mesh and Stage 0 3D markers. |
 | OBJ | `visualizations/obj_scene/final_grasp_real.obj` | Single OBJ scene containing the object mesh and the top-1 real gripper mesh. |
