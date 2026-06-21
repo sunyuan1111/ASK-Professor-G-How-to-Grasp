@@ -70,7 +70,6 @@ runs/{timestamp}_{gripper}_{object}/
     final_grasp_render.png
     final_grasp_real_views.png
     final_grasp_diagnostics.png
-    optimization_overview.png
     obj_scene/
       stage0_grasp_points.obj
       optimized_grasps.obj
@@ -80,7 +79,13 @@ runs/{timestamp}_{gripper}_{object}/
 
 ## Visualization
 
-The public pipeline writes both image and OBJ evidence for debugging and paper-style inspection.
+The public pipeline writes both image and OBJ evidence for debugging and paper-style inspection. The example below shows the evidence chain for `wsg_50` grasping `3D_Dollhouse_Lamp`: Stage 0 marks semantic 2D candidates, geometry probing validates the candidates in 3D, and the final grasp is checked with real-gripper multi-view rendering and diagnostic projections.
+
+<div align="center">
+  <img src="docs/media/lamp_wsg50_stem_demo/overview.png" width="92%" alt="Visualization evidence for WSG-50 grasping the 3D Dollhouse Lamp">
+</div>
+
+CEM convergence history is stored in `step3_output.json` for each optimized candidate. The README focuses on the visual evidence chain rather than the per-candidate optimization overview image.
 
 | Stage | Output | Description |
 | --- | --- | --- |
