@@ -116,6 +116,47 @@
             Your browser does not support the video tag.
           </video>
         </div>
+
+        <div class="demo-evidence">
+          <div class="demo-evidence-heading">
+            <p class="eyebrow">Visualization</p>
+            <h3>Public pipeline evidence</h3>
+            <p>
+              A representative WSG-50 and dollhouse-lamp run follows the core sequence from
+              semantic proposals to 3D validation, CEM refinement, and the final grasp.
+            </p>
+          </div>
+          <div class="evidence-grid">
+            <figure>
+              <img
+                src="media/lamp_wsg50_readme_clean/stage0_2d_points.png"
+                alt="Stage 0 semantic 2D grasp proposals on the lamp observation"
+              />
+              <figcaption>Stage 0 semantic grasp points on the RGB observation.</figcaption>
+            </figure>
+            <figure>
+              <img
+                src="media/lamp_wsg50_readme_clean/stage0_3d_validation.png"
+                alt="Validated 3D grasp candidates projected back to the RGB observation"
+              />
+              <figcaption>Geometry validation projects lifted 3D candidates back to RGB.</figcaption>
+            </figure>
+            <figure>
+              <img
+                src="media/lamp_wsg50_readme_clean/cem_refinement.png"
+                alt="CEM refinement curves and final candidate ranking"
+              />
+              <figcaption>CEM refinement lowers the objective and ranks candidate grasps.</figcaption>
+            </figure>
+            <figure>
+              <img
+                src="media/lamp_wsg50_readme_clean/final_grasp.png"
+                alt="Final grasp on the dollhouse lamp with WSG-50"
+              />
+              <figcaption>Final grasp selected for the lamp stem.</figcaption>
+            </figure>
+          </div>
+        </div>
       </section>
 
       <section class="section results" id="results">
