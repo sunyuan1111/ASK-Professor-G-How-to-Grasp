@@ -21,6 +21,37 @@ def _font(size: int = 15):
         return ImageFont.load_default()
 
 
+def _text_size(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.ImageFont) -> tuple[int, int]:
+    box = draw.textbbox((0, 0), text, font=font)
+    return box[2] - box[0], box[3] - box[1]
+
+
+def _draw_light_label(
+    draw: ImageDraw.ImageDraw,
+    xy: tuple[int, int],
+    text: str,
+    *,
+    fill: tuple[int, int, int] = (20, 24, 31),
+    font_size: int = 12,
+    max_width: int | None = None,
+) -> None:
+    font = _font(font_size)
+    truncated = False
+    if max_width is not None:
+        while len(text) > 4 and _text_size(draw, text, font)[0] > max_width - 12:
+            text = text[:-2]
+            truncated = True
+        if text.endswith(" "):
+            text = text.rstrip()
+        if truncated and len(text) > 4 and not text.endswith("..."):
+            text = text[:-3] + "..."
+    text_w, text_h = _text_size(draw, text, font)
+    x, y = xy
+    box = (x, y, x + text_w + 12, y + text_h + 8)
+    draw.rounded_rectangle(box, radius=5, fill=(255, 255, 255), outline=(205, 211, 220), width=1)
+    draw.text((x + 6, y + 4), text, fill=fill, font=font)
+
+
 def _rpy_to_matrix(roll: float, pitch: float, yaw: float) -> np.ndarray:
     cr, sr = math.cos(roll), math.sin(roll)
     cp, sp = math.cos(pitch), math.sin(pitch)
@@ -171,16 +202,8 @@ def _draw_overlay(
     gripper_label: str = "gripper proxy",
 ) -> None:
     draw = ImageDraw.Draw(image)
-    draw.rectangle((8, 8, 560, 120), fill=(0, 0, 0))
-    draw.text((18, 18), f"Final CEM grasp: object mesh + {gripper_label}", fill=(255, 255, 255), font=_font(17))
-    draw.text((18, 46), f"rank #1: {best.get('type', 'unknown')}", fill=(40, 220, 150), font=_font(14))
-    draw.text(
-        (18, 70),
-        f"loss={float(best.get('loss', 0.0)):.4f} raw={float(best.get('raw_loss', 0.0)):.4f} opening={opening * 1000:.1f}mm",
-        fill=(230, 230, 230),
-        font=_font(13),
-    )
-    draw.text((18, 94), "blue/cyan = gripper, green sphere = optimized TCP/contact center", fill=(230, 230, 230), font=_font(13))
+    summary = f"rank #1 | loss {float(best.get('loss', 0.0)):.3f} | opening {opening * 1000:.1f}mm"
+    _draw_light_label(draw, (14, 14), summary, fill=(20, 92, 140), font_size=12, max_width=image.size[0] - 28)
 
     state = np.asarray(best.get("result", []), dtype=float)
     if len(state) >= 3:
@@ -188,8 +211,9 @@ def _draw_overlay(
         if projected is not None:
             x, y = projected
             draw.ellipse((x - 8, y - 8, x + 8, y + 8), fill=(20, 220, 110), outline=(0, 0, 0), width=2)
-            draw.rectangle((x + 12, y - 15, x + 178, y + 10), fill=(0, 0, 0))
-            draw.text((x + 17, y - 12), "optimized center", fill=(20, 220, 110), font=_font(12))
+            label_x = min(max(x + 12, 0), max(image.size[0] - 148, 0))
+            label_y = min(max(y - 16, 0), max(image.size[1] - 27, 0))
+            _draw_light_label(draw, (label_x, label_y), "optimized center", fill=(15, 150, 75), font_size=12)
 
 
 def render_final_grasp(
@@ -468,8 +492,7 @@ def _render_real_view_panel(
     renderer.delete()
     image = Image.fromarray(color).convert("RGB")
     draw = ImageDraw.Draw(image)
-    draw.rectangle((0, 0, image_size, 36), fill=(0, 0, 0))
-    draw.text((14, 9), title, fill=(255, 255, 255), font=_font(15))
+    _draw_light_label(draw, (12, 12), title, fill=(20, 24, 31), font_size=13, max_width=image_size - 24)
     return image
 
 

@@ -13,6 +13,27 @@ def _font(size: int = 16):
         return ImageFont.load_default()
 
 
+def _text_size(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.ImageFont) -> tuple[int, int]:
+    box = draw.textbbox((0, 0), text, font=font)
+    return box[2] - box[0], box[3] - box[1]
+
+
+def _draw_light_label(
+    draw: ImageDraw.ImageDraw,
+    xy: tuple[int, int],
+    text: str,
+    *,
+    fill: tuple[int, int, int],
+    font_size: int = 13,
+) -> None:
+    font = _font(font_size)
+    text_w, text_h = _text_size(draw, text, font)
+    x, y = xy
+    box = (x, y, x + text_w + 12, y + text_h + 8)
+    draw.rounded_rectangle(box, radius=5, fill=(255, 255, 255), outline=(205, 211, 220), width=1)
+    draw.text((x + 6, y + 4), text, fill=fill, font=font)
+
+
 def draw_stage0_points_on_image(
     *,
     image_path: str | Path,
@@ -24,12 +45,6 @@ def draw_stage0_points_on_image(
     width, height = image.size
     data = json.loads(Path(stage0_path).read_text(encoding="utf-8"))
     colors = {"High": (40, 190, 80), "Medium": (245, 150, 30), "Low": (230, 60, 60)}
-
-    draw.rectangle((8, 8, 330, 124), fill=(0, 0, 0))
-    draw.text((18, 18), "Stage 0: VLM 2D grasp proposals", fill=(255, 255, 255), font=_font(17))
-    draw.text((18, 46), "solid = primary point", fill=(230, 230, 230), font=_font(13))
-    draw.text((18, 68), "ring = backup candidate", fill=(230, 230, 230), font=_font(13))
-    draw.text((18, 92), "green/orange/red = priority", fill=(230, 230, 230), font=_font(13))
 
     for proposal in data.get("proposals", []):
         color = colors.get(proposal.get("priority", "Medium"), colors["Medium"])
@@ -43,8 +58,9 @@ def draw_stage0_points_on_image(
             if idx == 0:
                 primary = (x, y)
                 draw.ellipse((x - 11, y - 11, x + 11, y + 11), fill=color, outline=(255, 255, 255), width=3)
-                draw.rectangle((x + 14, y - 16, x + 58, y + 8), fill=(0, 0, 0))
-                draw.text((x + 19, y - 14), f"#{prop_id}", fill=color, font=_font(16))
+                label_x = min(max(x + 14, 0), max(width - 54, 0))
+                label_y = min(max(y - 17, 0), max(height - 26, 0))
+                _draw_light_label(draw, (label_x, label_y), f"#{prop_id}", fill=color, font_size=15)
             else:
                 draw.ellipse((x - 6, y - 6, x + 6, y + 6), outline=color, width=3)
                 if primary:
@@ -74,18 +90,6 @@ def draw_geometry_audit_on_image(
         "INVALID_INPUT": (230, 50, 50),
     }
 
-    draw.rectangle((8, 8, 430, 132), fill=(0, 0, 0))
-    draw.text((18, 18), "Stage 0 -> 3D geometry validation", fill=(255, 255, 255), font=_font(17))
-    summary = data.get("summary", {})
-    draw.text(
-        (18, 46),
-        f"valid={summary.get('valid_grasps', 0)} selected={summary.get('selected_count', 0)} rejected={summary.get('rejected', 0)}",
-        fill=(230, 230, 230),
-        font=_font(13),
-    )
-    draw.text((18, 70), "labels show proposal id and measured local width", fill=(230, 230, 230), font=_font(13))
-    draw.text((18, 94), "green selected markers become Stage 1 search regions", fill=(230, 230, 230), font=_font(13))
-
     selected_ids = {item.get("id") for item in data.get("selected_strategies", [])}
     for item in data.get("audit_results", []):
         pixel = item.get("selected_pixel") or {}
@@ -100,12 +104,11 @@ def draw_geometry_audit_on_image(
         width = item.get("measured_width")
         width_text = f"{width * 1000:.0f}mm" if isinstance(width, (int, float)) else "n/a"
         label = f"#{item.get('id')} {status} {width_text}"
-        text_w = max(130, len(label) * 7)
-        draw.rectangle((x + 15, y - 16, x + 15 + text_w, y + 8), fill=(0, 0, 0))
-        draw.text((x + 20, y - 14), label, fill=color, font=_font(13))
+        label_x = min(max(x + 15, 0), max(image.size[0] - 178, 0))
+        label_y = min(max(y - 17, 0), max(image.size[1] - 26, 0))
+        _draw_light_label(draw, (label_x, label_y), label, fill=color, font_size=12)
 
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     image.save(output_path)
     return output_path
-

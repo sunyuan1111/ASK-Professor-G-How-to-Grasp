@@ -16,6 +16,27 @@ def _font(size: int = 15):
         return ImageFont.load_default()
 
 
+def _text_size(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.ImageFont) -> tuple[int, int]:
+    box = draw.textbbox((0, 0), text, font=font)
+    return box[2] - box[0], box[3] - box[1]
+
+
+def _draw_light_label(
+    draw: ImageDraw.ImageDraw,
+    xy: tuple[int, int],
+    text: str,
+    *,
+    fill: tuple[int, int, int],
+    font_size: int = 12,
+) -> None:
+    font = _font(font_size)
+    text_w, text_h = _text_size(draw, text, font)
+    x, y = xy
+    box = (x, y, x + text_w + 12, y + text_h + 8)
+    draw.rounded_rectangle(box, radius=5, fill=(255, 255, 255), outline=(205, 211, 220), width=1)
+    draw.text((x + 6, y + 4), text, fill=fill, font=font)
+
+
 def render_grasp_points(
     *,
     mesh_path: str | Path,
@@ -228,21 +249,16 @@ def _draw_projected_labels(image: Image.Image, strategies: list[dict[str, Any]],
         measured_width = item.get("measured_width")
         width_text = f"{measured_width * 1000:.0f}mm" if isinstance(measured_width, (int, float)) else "n/a"
         label = f"#{item.get('display_id', item.get('id', '?'))} {item.get('audit_status', 'VALID')} {width_text}"
-        x0 = min(max(x + 13, 0), max(width - 180, 0))
-        y0 = min(max(y - 18, 0), max(height - 24, 0))
-        draw.rectangle((x0, y0, x0 + max(118, len(label) * 7), y0 + 23), fill=(0, 0, 0))
-        draw.text((x0 + 5, y0 + 4), label, fill=(20, 220, 100), font=_font(12))
+        x0 = min(max(x + 13, 0), max(width - 178, 0))
+        y0 = min(max(y - 18, 0), max(height - 27, 0))
+        _draw_light_label(draw, (x0, y0), label, fill=(15, 150, 75), font_size=12)
 
 
 def _draw_legend(image: Image.Image, title: str, extra: str | None = None) -> None:
+    if extra is None:
+        return
     draw = ImageDraw.Draw(image)
-    height = 94 if extra is None else 118
-    draw.rectangle((8, 8, 510, height), fill=(0, 0, 0))
-    draw.text((18, 18), title, fill=(255, 255, 255), font=_font(16))
-    draw.text((18, 44), "green = valid selected 3D point, blue arrow = local normal", fill=(230, 230, 230), font=_font(13))
-    draw.text((18, 66), "same camera as Stage 0 RGB-D observation", fill=(230, 230, 230), font=_font(13))
-    if extra:
-        draw.text((18, 90), extra[:78], fill=(245, 200, 120), font=_font(12))
+    _draw_light_label(draw, (14, 14), f"{title} | {extra[:72]}", fill=(120, 60, 40), font_size=12)
 
 
 def _render_fallback_from_pixels(
@@ -272,8 +288,9 @@ def _render_fallback_from_pixels(
         label = f"#{item.get('id')} {status}"
         if point:
             label += f" [{point[0]:.3f},{point[1]:.3f},{point[2]:.3f}]"
-        draw.rectangle((x + 16, y - 15, x + 16 + max(120, len(label) * 7), y + 9), fill=(0, 0, 0))
-        draw.text((x + 20, y - 13), label, fill=color, font=_font(12))
+        label_x = min(max(x + 16, 0), max(width - 220, 0))
+        label_y = min(max(y - 16, 0), max(height - 27, 0))
+        _draw_light_label(draw, (label_x, label_y), label, fill=color, font_size=12)
     image.save(output_path)
 
 
