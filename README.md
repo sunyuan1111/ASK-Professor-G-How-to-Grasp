@@ -17,7 +17,7 @@ Wanhao Niu<sup>*</sup>, Yuan Sun<sup>*</sup>, Qiyan Ke, Jie Xu, Hao Sun, Muyuan 
 ## News
 
 - **2026-06**: Our paper is accepted to IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) 2026.
-- **2026-06**: We publicly release the paper and project page for Ask Professor G. How to Grasp.
+- **2026-06**: We publicly release the project page and reproducible codebase for Ask Professor G. How to Grasp.
 
 ## Overview
 
@@ -79,7 +79,7 @@ runs/{timestamp}_{gripper}_{object}/
 
 ## Visualization
 
-The public pipeline writes both image and OBJ evidence for debugging and paper-style inspection. The table below shows the standard outputs and representative previews from `wsg_50` grasping `3D_Dollhouse_Lamp`. CEM convergence history is stored in `step3_output.json` for each optimized candidate.
+The public pipeline records image and OBJ evidence for reproducibility and qualitative inspection. The table below shows the standard outputs and representative previews from `wsg_50` grasping `3D_Dollhouse_Lamp`. CEM convergence history is stored in `step3_output.json` for each optimized candidate.
 
 | Stage | Output | Description |
 | --- | --- | --- |
@@ -188,6 +188,8 @@ set GRASP_LLM_MODEL=gemini-3-pro-preview
 set GEMINI_API_KEY=...
 ```
 
+The paper experiments used `gemini-3.0-pro-preview`; the public code also supports other OpenAI-compatible or Gemini models that return the same schemas.
+
 OpenAI-compatible providers:
 
 ```bash
@@ -222,7 +224,7 @@ The default assets are managed with Git LFS:
 
 - gripper URDFs and configuration files under `data/grippers/` and `data/grippers_config/`
 - object meshes, URDFs, thumbnails, and point clouds under `data/objects/`
-- project-page figures and media under `docs/assets/`
+- project-page figures and media under `docs/assets/` and `docs/media/`
 
 The original research sandbox is kept locally under `oldcode/` and is ignored by Git.
 
