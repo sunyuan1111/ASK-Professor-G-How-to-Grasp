@@ -4,7 +4,7 @@
 
 ### Training-Free Cross-Gripper Grasping from an RGB-D Observation and a Gripper URDF
 
-Wanhao Niu<sup>*</sup>, Yuan Sun<sup>*</sup>, Qiyan Ke, Jie Xu, Hao Sun, Muyuan Ma, Fuchun Sun<sup>&dagger;</sup>
+Wanhao Niu<sup>\*</sup>, Yuan Sun<sup>\*</sup>, Qiyan Ke, Jie Xu, Hao Sun, Muyuan Ma, Fuchun Sun<sup>&dagger;</sup>
 
 [![Project Page](https://img.shields.io/badge/Project-Page-blue)](https://sunyuan1111.github.io/ASK-Professor-G-How-to-Grasp/)
 [![Paper](https://img.shields.io/badge/Paper-Coming%20Soon-red)](#citation)
@@ -16,7 +16,7 @@ Wanhao Niu<sup>*</sup>, Yuan Sun<sup>*</sup>, Qiyan Ke, Jie Xu, Hao Sun, Muyuan 
 
 ## News
 
-- **2026-06**: Our paper is accepted to IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) 2026.
+- **2026-06**: Our paper is accepted to IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) 2026.:confetti_ball:
 - **2026-06**: We publicly release the project page and reproducible codebase for Ask Professor G. How to Grasp.
 
 ## Overview
