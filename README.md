@@ -16,7 +16,7 @@ Wanhao Niu<sup>\*</sup>, Yuan Sun<sup>\*</sup>, Qiyan Ke, Jie Xu, Hao Sun, Muyua
 
 ## News
 
-- **2026-06**: Our paper is accepted to IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) 2026.:confetti_ball:
+- **2026-06**: Our paper is accepted to IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) 2026.🎉 🥳
 - **2026-06**: We publicly release the project page and reproducible codebase for Ask Professor G. How to Grasp.
 
 ## Overview
