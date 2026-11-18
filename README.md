@@ -7,7 +7,7 @@
 Wanhao Niu<sup>\*</sup>, Yuan Sun<sup>\*</sup>, Qiyan Ke, Jie Xu, Hao Sun, Muyuan Ma, Fuchun Sun<sup>&dagger;</sup>
 
 [![Project Page](https://img.shields.io/badge/Project-Page-blue)](https://sunyuan1111.github.io/ASK-Professor-G-How-to-Grasp/)
-[![Paper](https://img.shields.io/badge/Paper-Coming%20Soon-red)](#citation)
+[![Paper on OpenReview](https://img.shields.io/badge/Paper-OpenReview-red)](https://openreview.net/forum?id=TNpLT6gOTQ)
 [![Code](https://img.shields.io/badge/Code-NumPy%20%7C%20PyRender-green)](#quick-start)
 [![License](https://img.shields.io/badge/License-MIT-lightgrey)](LICENSE)
 
